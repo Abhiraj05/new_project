@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
-import MainContent from "./components/MainContent";
-import NavBar from "./components/navbar";
-import Footer from "./components/Footer";
-import InputBox from "./components/InputBox";
-
+import Home from "./pages/Home"
+import InputBox from "./pages/InputBox";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
 
 
   return (
     <>
-    <NavBar></NavBar>
-    <MainContent></MainContent>
-    <Footer></Footer>
+    <Router>
+      <Routes>
+           <Route path="/" element={<Home/>} />
+           <Route path="/generate" element={<InputBox/>} />
+      </Routes>
+    </Router>
     </>
   );
 }

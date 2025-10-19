@@ -1,4 +1,6 @@
 import React from "react";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faListCheck,
@@ -9,6 +11,7 @@ import {
 const InputBox = () => {
   return (
     <>
+    <NavBar></NavBar>
       <section id="create-quiz-section" className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -77,6 +80,7 @@ const InputBox = () => {
           </div>
         </div>
       </section>
+      <Footer></Footer>
     </>
   );
 };
