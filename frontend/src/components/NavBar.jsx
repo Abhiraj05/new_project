@@ -29,7 +29,7 @@ const NavBar = () => {
               Sign In
             </button>
             <button className="px-4 py-2 bg-primary text-white rounded-lg bg-blue-700 transition-colors">
-              Get Started
+              Sign Up
             </button>
           </nav>
         </div>
