@@ -12,13 +12,13 @@ const InputBox = () => {
   return (
     <>
       <NavBar></NavBar>
-      <section id="create-quiz-section" className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <section id="create-quiz-section" className="py-16 bg-white pt-35">
+        <div className="max-w-4xl mx-auto px-3">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Create Your Quiz
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 text-[15px] md:text-[16px]">
               Enter your content and let our AI generate engaging questions
             </p>
           </div>
@@ -28,11 +28,11 @@ const InputBox = () => {
             className="bg-white rounded-xl shadow-lg border border-gray-200 p-8"
           >
             <div className="mb-6">
-              <label className="block text-sm font-semibold text-gray-700 mb-3">
+              <label className="block text-[15px] md:text-[16px] font-semibold text-gray-700 mb-3">
                 Enter your Topic or Paste your Text here
               </label>
               <textarea
-                className="w-full h-48 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none "
+                className="w-full h-48 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none placeholder:text-[15px] md:text-[16px]"
                 placeholder="Type a topic like 'World War II' or paste your text content here..."
               ></textarea>
             </div>
@@ -71,7 +71,7 @@ const InputBox = () => {
                 </div>
               </div>
             </div> */}
-            <button className="hover:bg-white hover:border-cyan-500 hover:border  hover:rounded-lg  hover:text-cyan-500 w-full  bg-accent border border-cyan-500 bg-cyan-500 text-white py-2 rounded-lg text-[17px] font-semibold transition-colors">
+            <button className="hover:bg-white hover:border-cyan-500 hover:border  hover:rounded-lg  hover:text-cyan-500 w-full  bg-accent border border-cyan-500 bg-cyan-500 text-white py-2 rounded-lg md:text-[17px] text-[15px] font-semibold transition-colors">
               <FontAwesomeIcon icon={faWandMagicSparkles} className="mr-2" />
               Generate Quiz
             </button>

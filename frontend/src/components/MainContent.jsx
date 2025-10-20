@@ -24,7 +24,7 @@ const MainContent = () => {
       <main id="main-content">
         <section
           id="hero-section"
-          className="bg-gradient-to-br from-primary via-blue-600 to-accent h-[600px] flex items-center"
+          className="bg-gradient-to-br from-primary via-blue-600 to-accent h-[740px] flex items-center"
         >
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h1 className="md:text-5xl text-4xl font-bold text-white mb-6 sm:flex-wrap">
