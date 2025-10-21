@@ -2,11 +2,11 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center  bg-white bg-opacity-70 z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-black to-blue-700 via-blue-600 to-accent bg-opacity-70 z-50">
       <div className="space-y-3">
-        <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-white  border-t-transparent rounded-full animate-spin"></div>
         <div>
-          <div className="text-cyan-500 capitalize">loading...</div>
+          <div className="text-white capitalize">loading...</div>
         </div>
       </div>
     </div>

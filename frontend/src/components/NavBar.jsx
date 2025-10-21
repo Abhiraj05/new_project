@@ -22,8 +22,9 @@ const NavBar = () => {
   return (
     <>
       {loading && <Loader />}
-
-      <header className="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 w-full z-50">
+  
+      
+      <header className="bg-gradient from-primary  to-accent  shadow-sm fixed top-0 left-0 w-full z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <button onClick={() => navigate("/")}>
@@ -39,7 +40,7 @@ const NavBar = () => {
           <div className="md:hidden">
             <FontAwesomeIcon
               icon={menuOpen ? faXmark : faBars}
-              className="text-2xl text-gray-700 cursor-pointer"
+              className="text-2xl text-white cursor-pointer"
               onClick={() => setMenuOpen(!menuOpen)}
             />
           </div>
@@ -47,24 +48,24 @@ const NavBar = () => {
           <nav
             className={`${
               menuOpen
-                ? "flex flex-col absolute  top-16 left-0 w-full bg-white shadow-md py-4 space-y-4 items-center"
+                ? "flex flex-col absolute  top-16 left-0 w-full bg-gradient-to-b from-primary via-blue-600 shadow-md py-4 space-y-4 items-center"
                 : "hidden"
             } md:flex md:space-x-8 md:static md:flex-row md:justify-center md:items-center md:space-y-0 md:bg-transparent md:shadow-none`}
           >
             <span
-              className="hover:text-gray-600 hover:text-primary text-black cursor-pointer transition-colors"
+              className="hover:text-gray-400 hover:text-primary text-white cursor-pointer transition-colors"
               onClick={() => activateLoader("/contact")}
             >
               Contact
             </span>
             <span
-              className="hover:text-gray-600 hover:text-primary text-black cursor-pointer transition-colors"
+              className="hover:text-gray-400 hover:text-primary text-white cursor-pointer transition-colors"
               onClick={() => activateLoader("/about")}
             >
               About
             </span>
             <button
-              className="px-41 py-2 md:px-4 md:py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:border hover:bg-cyan-500 hover:rounded-lg hover-border hover:text-white transition-all"
+              className="px-41 py-2 md:px-4 md:py-2 bg-cyan-500 border border-white text-white rounded-lg hover:bg-primary hover:border hover:bg-white hover:rounded-lg hover:border-blue-700  hover:text-blue-700 transition-all"
               onClick={() => activateLoader("/signin")}
             >
               Sign In

@@ -6,13 +6,13 @@ const About = () => {
   return (
     <>
       <NavBar></NavBar>
-      <div className="bg-white min-h-screen flex flex-col items-center justify-center px-6 pt-15 md:py-12">
-        <h1 className="md:text-4xl text-3xl font-bold text-gray-900 mb-6 text-center">
+      <div className="bg-gradient-to-br from-primary  to-accent via-blue-700 min-h-screen flex flex-col items-center justify-center px-6 pt-15 md:py-12">
+        <h1 className="md:text-4xl text-3xl font-bold text-white mb-6 text-center">
           About AI Quiz Generator
         </h1>
-        <p className="flex-wrap text-[17px] md:text-lg text-gray-700 max-w-3xl text-center leading-relaxed ">
+        <p className="flex-wrap text-[17px] md:text-lg text-white max-w-3xl text-center leading-relaxed ">
           The{" "}
-          <span className="font-semibold text-blue-600">
+          <span className="font-semibold text-[#FE9D1B]">
             AI Quiz Generator{" "}
           </span>
           is an intelligent platform that allows users to effortlessly create
@@ -21,13 +21,13 @@ const About = () => {
           automatically generates well-structured and accurate questions, saving
           users time and effort.
         </p>
-        <p className="flex-wrap text-[17px] md:text-lg text-gray-700 max-w-3xl text-center leading-relaxed mt-4 ">
+        <p className="flex-wrap text-[17px] md:text-lg text-white max-w-3xl text-center leading-relaxed mt-4 ">
           Whether you’re a student preparing for exams, a teacher designing
           assessments, or just someone who loves testing knowledge — this tool
           helps you generate, customize, and take quizzes instantly. Simply
           enter a topic or description, and let the AI do the rest!
         </p>
-        <p className=" flex-wrap text-[15px] md:text-md text-gray-600 max-w-2xl text-center mt-6 italic">
+        <p className=" flex-wrap text-[15px] md:text-md text-white max-w-2xl text-center mt-6 italic">
           Our goal is to make learning interactive, efficient, and fun — one
           quiz at a time.
         </p>

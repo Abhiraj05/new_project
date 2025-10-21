@@ -12,13 +12,13 @@ const InputBox = () => {
   return (
     <>
       <NavBar></NavBar>
-      <section id="create-quiz-section" className="py-16 bg-white pt-35">
+      <section id="create-quiz-section" className="py-16 bg-gradient-to-br from-primary  to-accent via-blue-700 pt-35 ">
         <div className="max-w-4xl mx-auto px-3">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Create Your Quiz
             </h2>
-            <p className="text-gray-600 text-[15px] md:text-[16px]">
+            <p className="text-white text-[15px] md:text-[16px]">
               Enter your content and let our AI generate engaging questions
             </p>
           </div>
