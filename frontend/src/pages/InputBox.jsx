@@ -7,23 +7,37 @@ import {
   faToggleOn,
   faWandMagicSparkles,
 } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "motion/react";
 
 const InputBox = () => {
   return (
     <>
       <NavBar></NavBar>
-      <section id="create-quiz-section" className="py-16 bg-gradient-to-br from-primary  to-accent via-blue-700 pt-35 ">
+      <section
+        id="create-quiz-section"
+        className="py-16 bg-gradient-to-br from-primary  to-accent via-blue-700 pt-35 "
+      >
         <div className="max-w-4xl mx-auto px-3">
-          <div className="text-center mb-12">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-center mb-12"
+          >
             <h2 className="text-3xl font-bold text-white mb-4">
               Create Your Quiz
             </h2>
             <p className="text-white text-[15px] md:text-[16px]">
               Enter your content and let our AI generate engaging questions
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            viewport={{ once: true }}
             id="quiz-creator-card"
             className="bg-white rounded-xl shadow-lg border border-gray-200 p-6"
           >
@@ -75,7 +89,7 @@ const InputBox = () => {
               <FontAwesomeIcon icon={faWandMagicSparkles} className="mr-2" />
               Generate Quiz
             </button>
-          </div>
+          </motion.div>
         </div>
       </section>
       <Footer></Footer>

@@ -1,9 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import image from "../assets/ChatGPT Image Oct 21, 2025, 06_18_51 PM-Photoroom.png";
-
-
+import { motion } from "motion/react";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -27,12 +26,17 @@ const Footer = () => {
     <>
       {loading && <Loader />}
       <footer id="footer" className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-6">
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true, amount: 0.2 }}
+          className="max-w-7xl mx-auto px-6"
+        >
           <div className="flex flex-col sm:flex-wrap md:flex-row  justify-around items-start gap-6  md:gap-50">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                
-                  <img className="md:h-8 h-7" src={image} alt="" />
+                <img className="md:h-8 h-7" src={image} alt="" />
               </div>
               <p className="text-gray-400 text-sm">
                 Create engaging quizzes instantly with the power of artificial
@@ -43,12 +47,18 @@ const Footer = () => {
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className=" text-sm text-gray-400  flex flex-col space-y-2">
                 <li>
-                  <button className="hover:text-white transition-colors cursor-pointer" onClick={activateLoaderthree}>
+                  <button
+                    className="hover:text-white transition-colors cursor-pointer"
+                    onClick={activateLoaderthree}
+                  >
                     Contact
                   </button>
                 </li>
                 <li>
-                  <button className="hover:text-white transition-colors cursor-pointer" onClick={activateLoaderfour}>
+                  <button
+                    className="hover:text-white transition-colors cursor-pointer"
+                    onClick={activateLoaderfour}
+                  >
                     About
                   </button>
                 </li>
@@ -56,9 +66,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400 capitalize">
-            <p>© 2025 quizize<span className="lowercase">.ai</span> All rights reserved.</p>
+            <p>
+              © 2025 quizize<span className="lowercase">.ai</span> All rights
+              reserved.
+            </p>
           </div>
-        </div>
+        </motion.div>
       </footer>
     </>
   );
