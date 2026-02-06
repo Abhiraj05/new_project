@@ -1,10 +1,11 @@
-import React ,{useState} from "react";
+import React, { useState } from "react";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "motion/react";
 
 const SignIn = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setloadervalue] = useState(false);
   const activateLoader = () => {
     setloadervalue(true);
@@ -15,48 +16,81 @@ const SignIn = () => {
   };
   return (
     <>
-      {loading && <Loader/>}
+      {loading && <Loader />}
       <main className="bg-gradient-to-br from-primary via-blue-600 to-accent grid place-items-center h-screen border">
-        <div className=" bg-white text-center pt-8 pb-8  md:pt-10 md:pb-10 pr-8 pl-8 rounded-2xl">
-          <h3 className="capitalize md:text-[28px] text-[26px] mb-5 text-black font-bold">
-            sign in
-          </h3>
-          <form action="#" className="text-center">
-            <div>
-              <div className="text-left mb-2">
-              <label htmlFor="username" className="capitalize text-gray-700 md:text-[15px] text-[14px]">username*</label>
-              </div>
-              <input
-                className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
-                type="text"
-                placeholder="enter the username"
-              />
-            </div>
-            <div>
-               <div className="text-left mb-2">
-              <label htmlFor="password" className="capitalize text-gray-700 md:text-[15px] text-[14px]">password*</label>
-              </div>
-              <input
-                className="border border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-10 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
-                type="password"
-                placeholder="enter the password"
-              />
-            </div>
-            <div>
-              <button className="hover:bg-white hover:border-cyan-500 hover:border  hover:rounded-lg  hover:text-cyan-500 bg-accent bg-cyan-500 text-white font-semibold capitalize border pt-2 pb-2 md:px-30 px-28  rounded-xl  text-[17px]">
-                submit
-              </button>
-            </div>
-            <div className="flex justify-center items-center gap-2 capitalize mt-5 text-[15px]">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="text-center mb-12"
+        >
+          <div className=" bg-white text-center pt-8 pb-8  md:pt-10 md:pb-10 pr-8 pl-8 rounded-2xl">
+            <h3 className="capitalize md:text-[28px] text-[26px] mb-5 text-black font-bold">
+              sign in
+            </h3>
+            <form action="#" className="text-center">
               <div>
-                <p>don't have an account ?</p>
+                <div className="text-left mb-2">
+                  <label
+                    htmlFor="username"
+                    className="capitalize text-gray-700 md:text-[15px] text-[14px]"
+                  >
+                    username*
+                  </label>
+                </div>
+                <input
+                  className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
+                  type="text"
+                  placeholder="enter the username"
+                />
               </div>
               <div>
-                <button type="button" className="hover:text-cyan-500 capitalize text-blue-600" onClick={activateLoader} >signup</button>
+                <div className="text-left mb-2">
+                  <label
+                    htmlFor="password"
+                    className="capitalize text-gray-700 md:text-[15px] text-[14px]"
+                  >
+                    password*
+                  </label>
+                </div>
+                <div className="relative">
+                  <input
+                    className="border border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-10 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="enter the password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/4 -translate-y-1/2 text-sm text-gray-700 font-sans"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
+              <div>
+                <button className="hover:bg-white hover:border-cyan-500 hover:border  hover:rounded-lg  hover:text-cyan-500 bg-accent bg-cyan-500 text-white font-semibold capitalize border pt-2 pb-2 md:px-30 px-28  rounded-xl  text-[17px]">
+                  submit
+                </button>
+              </div>
+              <div className="flex justify-center items-center gap-2 capitalize mt-5 text-[15px]">
+                <div>
+                  <p>don't have an account ?</p>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    className="hover:text-cyan-500 capitalize text-blue-600"
+                    onClick={activateLoader}
+                  >
+                    signup
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </motion.div>
       </main>
     </>
   );

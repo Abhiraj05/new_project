@@ -55,7 +55,7 @@ const Contact = () => {
             </div>
           </div>
           <div className="bg-white pt-10 pb-8 md:pt-12 md:pb-10 pr-8 pl-8 rounded-2xl max-w-md">
-            <form action="#" className="text-center">
+            <form action="#" method="POST" className="text-center">
               <div>
                 <div className="text-left mb-2">
                   <label
@@ -68,6 +68,7 @@ const Contact = () => {
                 <input
                   className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
                   type="text"
+                  name="name"
                   placeholder="enter your name"
                 />
               </div>
@@ -83,6 +84,7 @@ const Contact = () => {
                 <input
                   className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
                   type="email"
+                  name="email"
                   placeholder="enter your email"
                 />
               </div>
@@ -97,6 +99,7 @@ const Contact = () => {
                 </div>
                 <textarea
                   className="mb-10 w-70 h-30 md:w-80 md:h-35 p-3 border  border-gray-500 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none placeholder:capitalize placeholder:text-[14px]"
+                  name="message"
                   placeholder="enter your message"
                 ></textarea>
               </div>
