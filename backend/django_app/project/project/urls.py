@@ -16,11 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from main import views
+from main.views import generate_quiz
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('main/',views.get_data),
-    path('random_int/',views.show_data),
-    
+    path('generate_quiz/',generate_quiz),
 ]
