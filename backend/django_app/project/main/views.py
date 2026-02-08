@@ -5,7 +5,7 @@ from django.http import JsonResponse
 import requests
 
 
-@api_view(['POST'])nnmmnm
+@api_view(['POST'])
 def generate_quiz(request):
     user_input=request.data.get("text_data")
     data = {
