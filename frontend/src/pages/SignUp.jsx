@@ -2,12 +2,50 @@ import React, { useState } from "react";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
+import axios from "axios";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setloadervalue] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    customer_email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.customer_email || !formData.password) {
+      alert("please fill the form");
+    }
+    if (formData.password !== confirmPassword) {
+      alert("password does not match");
+    } else {
+      setSubmitLoading(true);
+      try {
+        const response = await axios.post(
+          "http://127.0.0.1:8000/user_form/user_signup/",
+          formData,
+        );
+        setFormData({
+          customer_email: "",
+          password: "",
+        });
+        setConfirmPassword("");
+        alert(response.data.message);
+      } catch {
+        alert("failed to signup");
+      }
+      setSubmitLoading(false);
+    }
+  };
   const activateLoader = () => {
     setloadervalue(true);
     setTimeout(() => {
@@ -30,7 +68,7 @@ const SignUp = () => {
             <h3 className="capitalize md:text-[28px] text-[26px] mb-5 text-black font-bold">
               sign up
             </h3>
-            <form action="#" className="text-center">
+            <form action="#" onSubmit={handleSubmit} className="text-center">
               <div>
                 <div className="text-left mb-2">
                   <label
@@ -41,7 +79,10 @@ const SignUp = () => {
                   </label>
                 </div>
                 <input
+                  name="customer_email"
                   className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
+                  value={formData.customer_email}
+                  onChange={handleChange}
                   type="text"
                   placeholder="enter the username"
                 />
@@ -57,7 +98,10 @@ const SignUp = () => {
                 </div>
                 <div className="relative">
                   <input
+                    name="password"
                     className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
+                    value={formData.password}
+                    onChange={handleChange}
                     type={showPassword ? "text" : "password"}
                     placeholder="enter the password"
                   />
@@ -83,6 +127,8 @@ const SignUp = () => {
                   <input
                     className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-10 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
                     type={showConfirmPassword ? "text" : "password"}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
                     placeholder="enter the confirm password"
                   />
                   <button
@@ -95,8 +141,26 @@ const SignUp = () => {
                 </div>
               </div>
               <div>
-                <button className="hover:bg-white hover:border-cyan-500 hover:border  hover:rounded-lg  hover:text-cyan-500 bg-accent bg-cyan-500 text-white font-semibold capitalize border pt-2 pb-2 md:px-30 px-28 rounded-xl  text-[17px]">
-                  submit
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={submitLoading}
+                  className={`font-semibold capitalize border pt-2 pb-2 w-72 mx-auto rounded-xl text-[17px] transition flex items-center justify-center gap-2
+                     ${
+                       submitLoading
+                         ? "bg-cyan-400 cursor-not-allowed text-white border-cyan-400"
+                         : "bg-cyan-500 text-white hover:bg-white hover:text-cyan-500 hover:border-cyan-500"
+                     }`}
+
+                >
+                  {submitLoading ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
                 </button>
               </div>
               <div className="flex justify-center items-center gap-2 capitalize mt-5 text-[15px]">

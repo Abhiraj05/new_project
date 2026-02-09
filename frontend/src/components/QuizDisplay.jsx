@@ -1,29 +1,36 @@
 import React from "react";
 
-const QuizDisplay = ({questions}) => {
-  
+const QuizDisplay = ({ quiz }) => {
+
+  if (!quiz || !Array.isArray(quiz) || quiz.length === 0) {
+    return (
+      <div className="bg-white p-6 rounded-xl shadow-lg">
+        <p className="text-gray-500 text-center">No quiz data available</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-3xl mx-auto mt-10 space-y-6">
-      {questions.map((q, index) => (
-        <div
-          key={index}
-          className="p-6 bg-white rounded-lg shadow-md border border-gray-200"
-        >
-          <h2 className="text-lg font-semibold mb-4">
+    <div className="bg-gray-200 text-cyan-500 p-6 rounded-xl shadow-lg">
+      <h3 className="text-xl font-bold mb-6 text-primary">Generated Quiz</h3>
+
+      {quiz.map((q, index) => (
+        <div key={index} className="mb-6 border-b pb-4">
+          <p className="font-semibold mb-2 text-gray-700">
             {index + 1}. {q.question}
-          </h2>
-          <ul className="list-decimal list-inside space-y-2">
+          </p>
+
+          <ul className="space-y-1 ml-4 list-disc text-gray-700">
             {Object.keys(q)
-              .filter((key) => key.startsWith("option"))
-              .map((key, idx) => (
-                <li key={idx} className="text-gray-700">
-                  {q[key]}
-                </li>
+              .filter((key) => key.toLowerCase().startsWith("option"))
+              .map((opt, i) => (
+                <li key={i}>{q[opt]}</li>
               ))}
           </ul>
-          <ul className="list-decimal list-inside space-y-2 text-color font-bold text-green-400 mt-3">
-                     <span className="text-black capitalize">answer : </span>{q.correct_answer}
-                    </ul>
+
+          <p className="text-sm text-green-600 mt-2">
+            ✅ Correct: {q.correct_answer}
+          </p>
         </div>
       ))}
     </div>
