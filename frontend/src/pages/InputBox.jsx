@@ -30,7 +30,7 @@ const InputBox = () => {
       setLoading(true);
       try {
         const response = await axios.post(
-          `http://127.0.0.1:8000/generate_quiz/`,
+          "http://127.0.0.1:8000/generate_quiz/",
           textData,
         );
         setQuizData(response.data.generated_quiz);
@@ -38,7 +38,7 @@ const InputBox = () => {
           text_data: "",
         });
         setLoading(false);
-        alert("form submitted");
+        alert("quiz generated successfully");
       } catch {
         console.error("failed to generate quiz's");
       }
@@ -127,10 +127,10 @@ const InputBox = () => {
                 className={`w-full py-2 rounded-lg md:text-[17px] text-[16px] font-semibold transition-colors text-white
                 border border-cyan-500
                 ${
-                loading
-                ? "bg-cyan-400 cursor-not-allowed"
-                 : "bg-cyan-500 hover:bg-white hover:text-cyan-500 hover:border hover:rounded-lg"
-                 }
+                  loading
+                    ? "bg-cyan-400 cursor-not-allowed"
+                    : "bg-cyan-500 hover:bg-white hover:text-cyan-500 hover:border hover:rounded-lg"
+                }
                `}
               >
                 {loading ? (

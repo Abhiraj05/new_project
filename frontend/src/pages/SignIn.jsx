@@ -2,11 +2,34 @@ import React, { useState } from "react";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
+import axios from "axios";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setloadervalue] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.username || !formData.password) {
+      alert("please fill the form");
+    } else {
+      try {
+        await axios.post("http://127.0.0.1:8000/user_form/user_signin/",formData);
+        alert("login successful");
+      } catch {
+        console.error("failed to signin");
+      }
+    }
+  };
   const activateLoader = () => {
     setloadervalue(true);
     setTimeout(() => {
@@ -29,7 +52,7 @@ const SignIn = () => {
             <h3 className="capitalize md:text-[28px] text-[26px] mb-5 text-black font-bold">
               sign in
             </h3>
-            <form action="#" className="text-center">
+            <form action="#" onSubmit={handleSubmit} className="text-center">
               <div>
                 <div className="text-left mb-2">
                   <label
@@ -40,7 +63,10 @@ const SignIn = () => {
                   </label>
                 </div>
                 <input
+                  name="username"
                   className="border  border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
+                  value={formData.username}
+                  onChange={handleChange}
                   type="text"
                   placeholder="enter the username"
                 />
@@ -56,7 +82,10 @@ const SignIn = () => {
                 </div>
                 <div className="relative">
                   <input
+                    name="password"
                     className="border border-gray-500 w-70 h-13 md:w-80 md:h-12 mb-10 rounded-xl pl-3 placeholder:capitalize placeholder:text-[14px]"
+                    value={formData.password}
+                    onChange={handleChange}
                     type={showPassword ? "text" : "password"}
                     placeholder="enter the password"
                   />
