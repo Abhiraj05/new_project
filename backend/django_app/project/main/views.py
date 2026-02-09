@@ -8,8 +8,5 @@ import requests
 @api_view(['POST'])
 def generate_quiz(request):
     user_input=request.data.get("text_data")
-    data = {
-        "text": user_input
-    }
-    response = requests.get("http://127.0.0.1:8001/generate_quiz", json=data)
+    response = requests.get("http://127.0.0.1:8001/generate_quiz", json={"text": user_input})
     return JsonResponse(response.json(), safe=False)
