@@ -22,5 +22,6 @@ from main.views import generate_quiz
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("user_form/", include('customer.urls')),
-    path('generate_quiz/',generate_quiz)
+    path('generate_quiz/',generate_quiz),
 ]
+
