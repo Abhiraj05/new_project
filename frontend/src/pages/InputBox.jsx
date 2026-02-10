@@ -10,9 +10,8 @@ import { motion } from "motion/react";
 import axios from "axios";
 import QuizDisplay from "../components/QuizDisplay";
 
-
 const InputBox = () => {
-  const [textData, setTextData] = useState({ text_data: "" });
+  const [textData, setTextData] = useState({ text_data: "" ,num_of_questions:""});
   const [quizData, setQuizData] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [selectedText, setSelectedText] = useState("");
@@ -20,7 +19,6 @@ const InputBox = () => {
   const [loading, setLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const token = localStorage.getItem("access_token");
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,10 +47,15 @@ const InputBox = () => {
     e.preventDefault();
     if (!token) {
       alert("please login to generate a quiz");
-    } else {
+    }
+     else {
       if (!textData.text_data) {
         alert("please enter the text !");
         return;
+      }
+      if(!textData.num_of_questions){
+        alert("please select the quiz count !")
+        return
       }
       setLoading(true);
       try {
@@ -76,7 +79,7 @@ const InputBox = () => {
         setSelectedQuiz(newQuizItem.generated_quiz);
         setSelectedText(textData.text_data);
         setViewMode(true);
-        setTextData({ text_data: "" });
+        setTextData({ text_data: "",num_of_questions:"" });
         alert("quiz generated successfully");
       } catch (error) {
         console.error("failed to generate quiz's", error);
@@ -143,7 +146,7 @@ const InputBox = () => {
         </div>
       </div>
 
-      <section className="py-16 bg-gradient-to-br from-primary to-accent via-blue-700 py-35 ">
+      <section className="bg-gradient-to-br from-primary to-accent via-blue-700 py-35 ">
         <div className={`max-w-4xl mx-auto px-3 ${sidebarOpen ? "ml-80" : ""}`}>
           {viewMode && (
             <button
@@ -194,6 +197,24 @@ const InputBox = () => {
                       className="w-full h-48 p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none placeholder:text-[15px] md:text-[16px]"
                       placeholder="Type a topic like 'World War II' or paste your text content here..."
                     ></textarea>
+                  </div>
+                  <div>
+                    <select
+                      className="border bg-white border-gray-300 md:text-[14px] text-[13px] w-75 h-10 md:w-37 md:h-10 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[10px] text-gray-700"
+                      name="num_of_questions"
+                      id=""
+                      onChange={handleChange}
+                      value={textData.num_of_questions}
+                    >
+                      {" "}
+                      <option className="capitalize text-gray-700" value="" disabled> 
+                       Select Quiz Count
+                      </option>
+                      <option value="5">5 Questions</option>
+                      <option value="10">10 Questions</option>
+                      <option value="15">15 Questions</option>
+                      <option value="20">20 Questions</option>
+                    </select>
                   </div>
                   <button
                     type="submit"

@@ -4,8 +4,8 @@ const QuizDisplay = ({ quiz }) => {
 
   if (!quiz || !Array.isArray(quiz) || quiz.length === 0) {
     return (
-      <div className="bg-white p-6 rounded-xl shadow-lg">
-        <p className="text-gray-500 text-center">No quiz data available</p>
+      <div className="bg-gradient-to-l from-gray-900 via-gray-700 to-gray-900  p-6 rounded-xl shadow-lg">
+        <p className="text-gray-300 text-center capitalize">No quiz data available</p>
       </div>
     );
   }
