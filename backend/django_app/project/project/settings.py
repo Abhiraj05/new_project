@@ -109,18 +109,29 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # }
 
 
+# # postgres sql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'user',      # database name
+#         'USER': 'postgres',          # username
+#         'PASSWORD': '123456',        # password
+#         'HOST': 'localhost',         # host
+#         'PORT': '5432',              # PostgreSQL default port
+#     }
+# }
+
 # postgres sql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'user',      # database name
+        'NAME': 'Mydb',      # database name
         'USER': 'postgres',          # username
-        'PASSWORD': '123456',        # password
+        'PASSWORD': 'Pr@M@y32635',        # password
         'HOST': 'localhost',         # host
         'PORT': '5432',              # PostgreSQL default port
     }
 }
-
 
 
 # Password validation
