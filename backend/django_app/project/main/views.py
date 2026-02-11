@@ -20,20 +20,25 @@ def generate_quiz(request):
     user_instance=User.objects.get(id=request.user.id)
     user_input_data=request.data.get("text_data")
     file=request.FILES.get("file")
+    print(file)
     num_of_questions=request.data.get("num_of_questions")
     if user_input_data:
         response = requests.get("http://127.0.0.1:8001/generate_quiz", json={"text": user_input_data,"num_of_questions":num_of_questions})
+        LLMResponse.objects.create(user=user_instance,user_input=user_input_data,llm_response=response.json())
     else:
         text = file_text_extract(file)
+        if not text:
+            return JsonResponse({"error": "Failed to extract text"}, status=400)
         response = requests.get("http://127.0.0.1:8001/generate_quiz", json={"text": text,"num_of_questions":num_of_questions})
-        
-    LLMResponse.objects.create(user=user_instance,user_input=user_input_data,llm_response=response.json())
+        LLMResponse.objects.create(user=user_instance,user_input=text,llm_response=response.json())
     return JsonResponse(response.json(), safe=False)
 
 
 def file_text_extract(file):
+        temp_path = None
+        text = None
         md = MarkItDown()
-        temp_path = f"temp_{uuid.uuid4()}_{file.name}"
+        temp_path = f"temp_{uuid.uuid4()}_{file}"
         f = open(temp_path, "wb")
         for chunk in file.chunks():
             f.write(chunk)
@@ -42,8 +47,10 @@ def file_text_extract(file):
         try:
             result = md.convert(temp_path)
             text = result.text_content
+            print(text)
         except Exception as e:
-            return JsonResponse({"error": "Failed to extract text", "details": str(e)},status=400)
+            if not isinstance(text, str):
+                return None
         finally:
             if os.path.exists(temp_path):
                 os.remove(temp_path)
