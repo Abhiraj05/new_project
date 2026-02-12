@@ -11,7 +11,7 @@ import axios from "axios";
 import QuizDisplay from "../components/QuizDisplay";
 
 const InputBox = () => {
-  const [textData, setTextData] = useState({ text_data: "" ,num_of_questions:""});
+  const [textData, setTextData] = useState({ text_data: "", num_of_questions: "", file: "" });
   const [quizData, setQuizData] = useState([]);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [selectedText, setSelectedText] = useState("");
@@ -40,7 +40,11 @@ const InputBox = () => {
   }, []);
 
   const handleChange = (e) => {
-    setTextData({ ...textData, [e.target.name]: e.target.value });
+    if (e.target.name === "file") {
+      setTextData({ ...textData, file: e.target.files[0] });
+    } else {
+      setTextData({ ...textData, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -48,43 +52,53 @@ const InputBox = () => {
     if (!token) {
       alert("please login to generate a quiz");
     }
-     else {
-      if (!textData.text_data) {
-        alert("please enter the text !");
+    else {
+      if (!textData.text_data && !textData.file) {
+        alert("please enter the text or a pdf/doc file !");
         return;
       }
-      if(!textData.num_of_questions){
+      if (!textData.num_of_questions) {
         alert("please select the quiz count !")
         return
       }
-      setLoading(true);
-      try {
-        const response = await axios.post(
-          "http://127.0.0.1:8000/generate_quiz/",
-          textData,
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+      if (!textData.text_data && textData.file || textData.text_data && !textData.file) {
+        setLoading(true);
+        try {
+          const formData = new FormData();
+
+          formData.append("text_data", textData.text_data);
+          formData.append("num_of_questions", textData.num_of_questions);
+
+          if (textData.file) {
+            formData.append("file", textData.file);
+          }
+          const response = await axios.post(
+            "http://127.0.0.1:8000/generate_quiz/",
+            formData,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+              },
             },
-          },
-        );
+          );
 
-        const newQuizItem = {
-          id: Date.now(),
-          user_input: textData.text_data,
-          generated_quiz: response.data.generated_quiz,
-        };
+          const newQuizItem = {
+            id: Date.now(),
+            user_input: textData.text_data,
+            generated_quiz: response.data.generated_quiz,
+          };
 
-        setQuizData((prev) => [newQuizItem, ...prev]);
-        setSelectedQuiz(newQuizItem.generated_quiz);
-        setSelectedText(textData.text_data);
-        setViewMode(true);
-        setTextData({ text_data: "",num_of_questions:"" });
-        alert("quiz generated successfully");
-      } catch (error) {
-        console.error("failed to generate quiz's", error);
+          setQuizData((prev) => [newQuizItem, ...prev]);
+          setSelectedQuiz(newQuizItem.generated_quiz);
+          setSelectedText(textData.text_data);
+          setViewMode(true);
+          setTextData({ text_data: "", num_of_questions: "", file: "" });
+          alert("quiz generated successfully");
+        } catch (error) {
+          console.error("failed to generate quiz's", error);
+        }
+        setLoading(false);
       }
-      setLoading(false);
     }
   };
 
@@ -113,9 +127,8 @@ const InputBox = () => {
 
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-primary to-blue-700 text-white shadow-2xl transform transition-transform duration-300 z-50 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 h-full w-80 bg-gradient-to-b from-primary to-blue-700 text-white shadow-2xl transform transition-transform duration-300 z-50 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="p-5 flex justify-between items-center border-b bg-cyan-500 border-white/20">
           <h2 className="text-xl font-bold capitalize">history</h2>
@@ -199,32 +212,36 @@ const InputBox = () => {
                     ></textarea>
                   </div>
                   <div>
-                    <select
-                      className="border bg-white border-gray-300 md:text-[14px] text-[13px] w-75 h-10 md:w-37 md:h-10 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[10px] text-gray-700"
-                      name="num_of_questions"
-                      id=""
-                      onChange={handleChange}
-                      value={textData.num_of_questions}
-                    >
-                      {" "}
-                      <option className="capitalize text-gray-700" value="" disabled> 
-                       Select Quiz Count
-                      </option>
-                      <option value="5">5 Questions</option>
-                      <option value="10">10 Questions</option>
-                      <option value="15">15 Questions</option>
-                      <option value="20">20 Questions</option>
-                    </select>
+                    <div>
+                      <select
+                        className="border bg-white border-gray-300 md:text-[14px] text-[13px] w-75 h-10 md:w-37 md:h-10 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[10px] text-gray-700"
+                        name="num_of_questions"
+                        id=""
+                        onChange={handleChange}
+                        value={textData.num_of_questions}
+                      >
+                        {" "}
+                        <option className="capitalize text-gray-700" value="" disabled>
+                          Select Quiz Count
+                        </option>
+                        <option value="5">5 Questions</option>
+                        <option value="10">10 Questions</option>
+                        <option value="15">15 Questions</option>
+                        <option value="20">20 Questions</option>
+                      </select>
+                    </div>
+                    <div>
+                      <input type="file" name="file" onChange={handleChange} />
+                    </div>
                   </div>
                   <button
                     type="submit"
                     className={`w-full py-2 rounded-lg md:text-[17px] text-[16px] font-semibold transition-colors text-white
                 border border-cyan-500
-                ${
-                  loading
-                    ? "bg-cyan-400 cursor-not-allowed"
-                    : "bg-cyan-500 hover:bg-white hover:text-cyan-500 hover:border hover:rounded-lg"
-                }
+                ${loading
+                        ? "bg-cyan-400 cursor-not-allowed"
+                        : "bg-cyan-500 hover:bg-white hover:text-cyan-500 hover:border hover:rounded-lg"
+                      }
                `}
                   >
                     {loading ? (
