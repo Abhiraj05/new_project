@@ -211,7 +211,7 @@ const InputBox = () => {
                       placeholder="Type a topic like 'World War II' or paste your text content here..."
                     ></textarea>
                   </div>
-                  <div>
+                  <div className="flex-col justify-start items-center gap-x-5">
                     <div>
                       <select
                         className="border bg-white border-gray-300 md:text-[14px] text-[13px] w-75 h-10 md:w-37 md:h-10 mb-6 rounded-xl pl-3 placeholder:capitalize placeholder:text-[10px] text-gray-700"
@@ -231,7 +231,7 @@ const InputBox = () => {
                       </select>
                     </div>
                     <div>
-                      <input type="file" name="file" onChange={handleChange} />
+                      <input className="border-2 border-gray-300 placeholder:text-gray-300 px-2 py-2 rounded-xl text-[14px] mb-4" type="file" name="file" onChange={handleChange} />
                     </div>
                   </div>
                   <button
