@@ -54,8 +54,12 @@ const InputBox = () => {
     }
     else {
       if (!textData.text_data && !textData.file) {
-        alert("please enter the text or a pdf/doc file !");
+        alert("please enter the text or select a pdf/doc file !");
         return;
+      }
+      if(textData.text_data && textData.file){
+        alert("please either enter the text or select a pdf/doc file !");
+        return; 
       }
       if (!textData.num_of_questions) {
         alert("please select the quiz count !")
@@ -84,13 +88,13 @@ const InputBox = () => {
 
           const newQuizItem = {
             id: Date.now(),
-            user_input: textData.text_data,
-            generated_quiz: response.data.generated_quiz,
+            user_input: response.data.user_input,
+            generated_quiz: response.data.generated_quiz_data.generated_quiz,
           };
 
           setQuizData((prev) => [newQuizItem, ...prev]);
           setSelectedQuiz(newQuizItem.generated_quiz);
-          setSelectedText(textData.text_data);
+          setSelectedText(newQuizItem.user_input);
           setViewMode(true);
           setTextData({ text_data: "", num_of_questions: "", file: "" });
           alert("quiz generated successfully");
