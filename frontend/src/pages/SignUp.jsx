@@ -170,7 +170,7 @@ const SignUp = () => {
                 <div>
                   <button
                     type="button"
-                    className="hover:text-cyan-500 capitalize text-blue-600"
+                    className="hover:text-cyan-500 capitalize hover:underline text-blue-600"
                     onClick={activateLoader}
                   >
                     signin

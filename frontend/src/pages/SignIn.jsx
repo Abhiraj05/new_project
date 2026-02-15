@@ -40,8 +40,9 @@ const SignIn = () => {
         alert("login successful");
       } catch {
         console.error("failed to signin");
+        alert("failed to signin")
       }
-      setSubmitLoading(true);
+      setSubmitLoading(false);
 
     }
   };
@@ -52,6 +53,15 @@ const SignIn = () => {
       navigate("/signup");
     }, 1500);
   };
+
+    const showResetPassword = () => {
+    setloadervalue(true);
+    setTimeout(() => {
+      setloadervalue(false);
+      navigate("/forgotpassword");
+    }, 1500);
+  };
+
   return (
     <>
       {loading && <Loader />}
@@ -143,13 +153,27 @@ const SignIn = () => {
                 <div>
                   <button
                     type="button"
-                    className="hover:text-cyan-500 capitalize text-blue-600"
+                    className="hover:text-cyan-500 capitalize hover:underline text-blue-600"
                     onClick={activateLoader}
                   >
                     signup
                   </button>
                 </div>
               </div>
+               <div className="flex justify-center items-center gap-2 capitalize mt-3 text-[15px]">
+                  <div className="text-[#333333]">
+                    <p>forgot password?</p>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      className="capitalize text-blue-500 hover:underline hover:text-cyan-500"
+                      onClick={showResetPassword}
+                    >
+                      reset password
+                    </button>
+                  </div>
+                </div>
             </form>
           </div>
         </motion.div>
