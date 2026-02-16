@@ -110,7 +110,7 @@ const ForgotPassword = () => {
                 className="text-center text-[15px] text-gray-600 mt-6"
               >
                 Remembered your password?{" "}
-                <a className="text-blue-500 font-semibold hover:underline hover:text-cyan-500">
+                <a className="text-blue-600 font-semibold hover:underline hover:text-cyan-500">
                   Sign in
                 </a>
               </p>
@@ -119,7 +119,7 @@ const ForgotPassword = () => {
                 className="text-center text-sm text-gray-600 mt-6"
               >
                 or{" "}
-                <a className="text-blue-500 font-semibold hover:underline hover:text-cyan-500">
+                <a className="text-blue-600 font-semibold hover:underline hover:text-cyan-500">
                   Sign up
                 </a>
               </p>

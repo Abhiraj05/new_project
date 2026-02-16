@@ -167,7 +167,7 @@ const SignIn = () => {
                   <div>
                     <button
                       type="button"
-                      className="capitalize text-blue-500 hover:underline hover:text-cyan-500"
+                      className="capitalize text-blue-600 hover:underline hover:text-cyan-500"
                       onClick={showResetPassword}
                     >
                       reset password
