@@ -87,8 +87,8 @@ def get_user_data(request):
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_username(request):
-    username = User.objects.filter(id=request.user.id).values("username")
-    return Response({"username": username})
+    userdata = User.objects.filter(id=request.user.id).values("username","email")
+    return Response({"userdata": userdata})
 
 
 @api_view(['POST'])
