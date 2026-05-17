@@ -2,6 +2,9 @@ fastapi[standard]
 python-dotenv
 SQLAlchemy  
 psycopg[binary]
+markitdown[all]
+pwdlib[argon2]
+pyjwt
 langchain-google-genai
 langchain_text_splitters
 chromadb
