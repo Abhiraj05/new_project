@@ -3,8 +3,8 @@ import Sidebar from "@/components/Sidebar";
 export default function Page() {
   return (
     <div className="bg-slate-50 text-slate-900 min-h-screen flex">
-      
-      <main className="flex-1 flex flex-col min-h-screen">
+      <Sidebar />
+      <main className="flex-1 lg:ml-72 flex flex-col min-h-screen">
         <header className="bg-white sticky top-0 z-40 border-b border-gray-200 flex justify-between items-center h-16 px-8 w-full shadow-sm">
           <div className="flex items-center gap-6">
             <div className="relative group">
@@ -39,12 +39,12 @@ export default function Page() {
  Leverage semantic patient retrieval and structured extraction to accelerate clinical research and improve patient outcomes through high-fidelity data synthesis.
  </p>
 <div className="flex flex-wrap gap-4">
-<Link href="/dashboard" className="inline-block px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-lg shadow-[0_0_20px_rgba(137,206,255,0.3)] hover:scale-[1.02] transition-transform active:scale-95">
+<button className="px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-lg shadow-[0_0_20px_rgba(137,206,255,0.3)] hover:scale-[1.02] transition-transform active:scale-95">
  Launch Dashboard
- </Link>
-<Link href="/intake" className="inline-block px-8 py-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-gray-900 border border-gray-200 hover:bg-slate-50-container-high transition-colors font-bold rounded-lg">
+ </button>
+<button className="px-8 py-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-gray-900 border border-gray-200 hover:bg-slate-50-container-high transition-colors font-bold rounded-lg">
  Upload Reports
- </Link>
+ </button>
 </div>
 <div className="mt-12 flex items-center gap-6">
 <div className="flex -space-x-3">
