@@ -1,3 +1,116 @@
 @import "tailwindcss";
 
 
+@theme {
+  --color-surface-container-lowest: #000f21;
+  --color-surface-dim: #031427;
+  --color-on-secondary-container: #adb4ce;
+  --color-on-tertiary-container: #003b26;
+  --color-surface-tint: #89ceff;
+  --color-surface-container-highest: #26364a;
+  --color-primary: #89ceff;
+  --color-on-primary: #00344d;
+  --color-on-tertiary-fixed: #002113;
+  --color-on-error-container: #ffdad6;
+  --color-secondary-fixed: #dae2fd;
+  --color-tertiary-fixed-dim: #4edea3;
+  --color-error: #ffb4ab;
+  --color-secondary: #bec6e0;
+  --color-on-tertiary-fixed-variant: #005236;
+  --color-surface-container: #102034;
+  --color-primary-fixed: #c9e6ff;
+  --color-secondary-container: #3f465c;
+  --color-tertiary: #4edea3;
+  --color-outline: #88929b;
+  --color-on-secondary-fixed: #131b2e;
+  --color-surface-container-high: #1b2b3f;
+  --color-on-primary-container: #003751;
+  --color-error-container: #93000a;
+  --color-inverse-on-surface: #213145;
+  --color-primary-fixed-dim: #89ceff;
+  --color-on-primary-fixed-variant: #004c6e;
+  --color-on-secondary-fixed-variant: #3f465c;
+  --color-tertiary-fixed: #6ffbbe;
+  --color-on-surface: #d3e4fe;
+  --color-primary-container: #0ea5e9;
+  --color-surface: #031427;
+  --color-on-tertiary: #003824;
+  --color-inverse-primary: #006591;
+  --color-surface-container-low: #0b1c30;
+  --color-inverse-surface: #d3e4fe;
+  --color-on-secondary: #283044;
+  --color-on-primary-fixed: #001e2f;
+  --color-background: #031427;
+  --color-tertiary-container: #00b17b;
+  --color-on-error: #690005;
+  --color-on-background: #d3e4fe;
+  --color-surface-bright: #2a3a4f;
+  --color-outline-variant: #3e4850;
+  --color-secondary-fixed-dim: #bec6e0;
+  --color-surface-variant: #26364a;
+  --color-on-surface-variant: #bec8d2;
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+  --spacing-gutter: 24px;
+  --spacing-margin: 32px;
+  --spacing-container-max: 1440px;
+  --spacing-unit: 4px;
+  --font-display-lg: "Inter", sans-serif;
+  --font-label-sm: "JetBrains Mono", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-headline-sm: "Inter", sans-serif;
+  --font-headline-md: "Inter", sans-serif;
+  --font-label-md: "JetBrains Mono", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-headline-lg: "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --text-display-lg: 48px;
+  --text-display-lg--line-height: 56px;
+  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-lg--font-weight: 700;
+  --text-label-sm: 10px;
+  --text-label-sm--line-height: 14px;
+  --text-label-sm--letter-spacing: 0.05em;
+  --text-label-sm--font-weight: 500;
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+  --text-headline-sm: 20px;
+  --text-headline-sm--line-height: 28px;
+  --text-headline-sm--font-weight: 600;
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--font-weight: 600;
+  --text-label-md: 12px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.05em;
+  --text-label-md--font-weight: 500;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--font-weight: 400;
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 600;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+}
+
+.material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(16, 32, 52, 0.6);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .ai-badge-glow {
+            box-shadow: 0 0 15px rgba(78, 222, 163, 0.2);
+            border: 1px solid rgba(78, 222, 163, 0.3);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #031427; }
+        ::-webkit-scrollbar-thumb { background: #26364a; border-radius: 10px; }
