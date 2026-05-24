@@ -23,7 +23,7 @@ export default function Page() {
             </div>
           </div>
         </header>
-        <div className="p-8 max-w-7xl mx-auto w-full flex-1 space-y-6">
+        <div className="w-full flex-1">
           {/* Hero Section */}
 <section className="relative pt-24 pb-32 px-margin overflow-hidden">
 <div className="max-w-container-max mx-auto grid lg:grid-cols-2 gap-16 items-center">
@@ -72,18 +72,7 @@ export default function Page() {
 <p className="text-[10px] text-gray-900-variant font-mono">EXTRACTING: ONCOLOGY_PATH_04</p>
 </div>
 </div>
-<div className="absolute -bottom-6 -left-10 bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-4 rounded-lg border-tertiary/30 w-64 shadow-xl">
-<div className="flex items-center justify-between mb-2">
-<span className="text-sm font-medium font-bold">Matching Cases</span>
-<span className="text-green-600 font-bold ">98% Fit</span>
-</div>
-<div className="flex gap-2">
-<div className="h-8 w-8 rounded bg-slate-50-container-highest"></div>
-<div className="h-8 w-8 rounded bg-slate-50-container-highest"></div>
-<div className="h-8 w-8 rounded bg-slate-50-container-highest"></div>
-<div className="h-8 w-8 rounded bg-slate-50-container-highest flex items-center justify-center font-mono text-[10px]">+12</div>
-</div>
-</div>
+
 </div>
 {/* Background decor */}
 <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-teal-600/5 blur-[120px] rounded-full"></div>

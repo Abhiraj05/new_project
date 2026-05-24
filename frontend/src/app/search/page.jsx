@@ -23,10 +23,57 @@ export default function Page() {
             </div>
           </div>
         </header>
-        <div className="p-8 max-w-7xl mx-auto w-full flex-1 space-y-6">
+        <div className="w-full flex-1">
           <div className="max-w-container-max mx-auto px-margin flex gap-8">
 {/* Sidebar Filters */}
-<Sidebar />
+            <aside className="w-64 shrink-0 bg-white p-6 rounded-xl border border-gray-200 shadow-sm space-y-6 hidden md:block h-fit">
+              <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+                <h3 className="font-semibold text-gray-900 flex items-center gap-2">
+                  <span className="material-symbols-outlined text-teal-600 text-lg">filter_alt</span>
+                  Search Filters
+                </h3>
+                <button className="text-xs font-semibold text-teal-600 hover:text-teal-750">Clear All</button>
+              </div>
+              
+              {/* Gender Filter */}
+              <div>
+                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2.5">Gender</h4>
+                <div className="space-y-2">
+                  {['All Genders', 'Male', 'Female'].map((gender) => (
+                    <label key={gender} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                      <input type="radio" name="gender" defaultChecked={gender === 'All Genders'} className="text-teal-600 focus:ring-teal-500" />
+                      {gender}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Age Range Filter */}
+              <div>
+                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2.5">Age Range</h4>
+                <div className="space-y-2">
+                  {['All Ages', 'Under 30', '30 - 50', '51 - 70', 'Over 70'].map((age) => (
+                    <label key={age} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                      <input type="radio" name="age" defaultChecked={age === 'All Ages'} className="text-teal-600 focus:ring-teal-500" />
+                      {age}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Status Filter */}
+              <div>
+                <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2.5">Patient Status</h4>
+                <div className="space-y-2">
+                  {['All Statuses', 'Stable', 'Critical', 'Screening'].map((status) => (
+                    <label key={status} className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
+                      <input type="checkbox" defaultChecked={status === 'All Statuses'} className="rounded text-teal-600 focus:ring-teal-500" />
+                      {status}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </aside>
 {/* Results Section */}
 <section className="flex-1 space-y-6">
 {/* AI Search Insights Header */}

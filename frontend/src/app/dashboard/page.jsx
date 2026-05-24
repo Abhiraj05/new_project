@@ -30,7 +30,7 @@ export default function Page() {
           </div>
         </header>
 
-        <div className="p-8 max-w-7xl mx-auto w-full flex-1 space-y-6">
+        <div className="p-8 w-full flex-1 space-y-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Intelligence Dashboard</h2>

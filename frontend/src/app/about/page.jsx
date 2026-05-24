@@ -23,7 +23,7 @@ export default function Page() {
             </div>
           </div>
         </header>
-        <div className="p-8 max-w-7xl mx-auto w-full flex-1 space-y-6">
+        <div className="p-8 w-full flex-1 space-y-6">
           <div className="text-8xl capitalize font-extrabold">about page</div>
         </div>
       </main>
