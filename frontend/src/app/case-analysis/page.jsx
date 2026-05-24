@@ -23,7 +23,7 @@ export default function Page() {
             </div>
           </div>
         </header>
-        <div className="p-8 max-w-7xl mx-auto w-full flex-1 space-y-6">
+        <div className="w-full flex-1">
           {/* Page Header */}
 <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
 <div>
@@ -172,10 +172,10 @@ export default function Page() {
 {/* Right Column: AI Analysis (5 Columns) */}
 <div className="lg:col-span-5 space-y-gutter">
 {/* AI Explanation Panel */}
-<div className="ai-shimmer bg-slate-50-container rounded-2xl border border-teal-200 p-8 shadow-2xl relative">
+<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative">
 <div className="relative z-10">
 <div className="flex items-center gap-3 mb-4">
-<div className="w-10 h-10 rounded-lg bg-teal-600/20 flex items-center justify-center border border-primary/40">
+<div className="w-10 h-10 rounded-lg bg-teal-600/10 flex items-center justify-center border border-teal-150">
 <span className="material-symbols-outlined text-teal-600" data-weight="fill">psychology</span>
 </div>
 <div>
@@ -184,7 +184,7 @@ export default function Page() {
 </div>
 </div>
 <div className="space-y-4">
-<div className="p-4 bg-teal-600/5 rounded-xl border-l-4 border-primary">
+<div className="p-4 bg-teal-600/5 rounded-xl border-l-4 border-teal-500">
 <p className=" text-gray-900 leading-relaxed">
  &quot;This case matches <span className="text-teal-600 font-bold">84 historical pneumonia cases</span> with <span className="text-teal-600 font-bold">89% semantic similarity</span>. The trajectory indicates a high likelihood of bacterial origin based on the recent CRP spike and localized infiltration patterns.&quot;
  </p>
@@ -212,29 +212,27 @@ export default function Page() {
 </div>
 </div>
 {/* Predicted Outcomes (Risk Gauges) */}
-<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm rounded-xl p-6">
+<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
 <h3 className="text-lg font-semibold mb-6">Predicted Outcomes</h3>
-<div className="grid grid-cols-2 gap-4">
-<div className="bg-slate-50-container-low/50 p-4 rounded-xl border border-gray-200 text-center">
-<div className="relative w-20 h-20 mx-auto mb-3">
-<svg className="w-full h-full transform -rotate-90">
-<circle className="text-outline-variant/20" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="6"></circle>
-<circle className="text-red-600" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226" stroke-dashoffset="180" stroke-width="6"></circle>
-</svg>
-<div className="absolute inset-0 flex items-center justify-center text-sm font-medium text-red-600 font-bold">22%</div>
-</div>
-<p className=" text-gray-900-variant uppercase font-bold">Infection Risk</p>
-</div>
-<div className="bg-slate-50-container-low/50 p-4 rounded-xl border border-gray-200 text-center">
-<div className="relative w-20 h-20 mx-auto mb-3">
-<svg className="w-full h-full transform -rotate-90">
-<circle className="text-outline-variant/20" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="6"></circle>
-<circle className="text-green-600" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226" stroke-dashoffset="45" stroke-width="6"></circle>
-</svg>
-<div className="absolute inset-0 flex items-center justify-center text-sm font-medium text-green-600 font-bold">78%</div>
-</div>
-<p className=" text-gray-900-variant uppercase font-bold">Recovery Prob.</p>
-</div>
+<div className="space-y-5">
+  <div>
+    <div className="flex justify-between text-sm font-semibold text-gray-700 mb-1.5">
+      <span>Infection Risk</span>
+      <span className="text-red-600 font-bold">22%</span>
+    </div>
+    <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+      <div className="h-full bg-red-500 rounded-full" style={{ width: "22%" }}></div>
+    </div>
+  </div>
+  <div>
+    <div className="flex justify-between text-sm font-semibold text-gray-700 mb-1.5">
+      <span>Recovery Probability</span>
+      <span className="text-green-600 font-bold">78%</span>
+    </div>
+    <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+      <div className="h-full bg-green-500 rounded-full" style={{ width: "78%" }}></div>
+    </div>
+  </div>
 </div>
 </div>
 {/* Treatment Effectiveness */}

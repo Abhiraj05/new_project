@@ -23,7 +23,7 @@ export default function Page() {
             </div>
           </div>
         </header>
-        <div className="p-8 max-w-7xl mx-auto w-full flex-1 space-y-6">
+        <div className="w-full flex-1">
           {/* Top Navigation Bar */}
 
 {/* Page Header & Comparison Control */}
@@ -62,20 +62,50 @@ export default function Page() {
 </div>
 <button className="text-teal-600 hover:underline text-sm font-medium">Change</button>
 </div>
-{/* Radar Chart Placeholder */}
-<div className="relative h-64 w-full flex items-center justify-center mb-6">
-<div className="absolute inset-0 medical-radar bg-teal-600/5 border border-teal-200"></div>
-<div className="absolute inset-4 medical-radar bg-teal-600/10 border border-teal-200"></div>
-<div className="absolute inset-10 medical-radar bg-teal-600/20 border-2 border-primary"></div>
-<div className="z-10 text-center">
-<p className="text-xs font-medium uppercase tracking-wider text-teal-600 uppercase">Symptom Cluster</p>
-<p className="text-xl font-bold font-bold text-gray-900">Moderate</p>
-</div>
-{/* Axis Labels */}
-<span className="absolute top-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Fatigue</span>
-<span className="absolute bottom-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Inflammation</span>
-<span className="absolute right-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Dyspnea</span>
-<span className="absolute left-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Nausea</span>
+{/* Symptom Levels List */}
+<div className="space-y-4 mb-6">
+  <div className="flex justify-between items-center text-sm font-semibold text-gray-900 border-b border-gray-100 pb-2">
+    <span>Symptom Intensity</span>
+    <span className="text-xs text-gray-500 uppercase">Moderate Cluster</span>
+  </div>
+  <div className="space-y-3">
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Fatigue</span>
+        <span className="font-bold text-gray-900">65%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-500 rounded-full" style={{ width: "65%" }}></div>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Inflammation</span>
+        <span className="font-bold text-gray-900">40%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-500 rounded-full" style={{ width: "40%" }}></div>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Dyspnea</span>
+        <span className="font-bold text-gray-900">55%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-500 rounded-full" style={{ width: "55%" }}></div>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Nausea</span>
+        <span className="font-bold text-gray-900">25%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-500 rounded-full" style={{ width: "25%" }}></div>
+      </div>
+    </div>
+  </div>
 </div>
 <div className="space-y-4">
 <div>
@@ -130,20 +160,50 @@ export default function Page() {
 </div>
 <button className="text-green-600 hover:underline text-sm font-medium">Change</button>
 </div>
-{/* Radar Chart Placeholder 2 */}
-<div className="relative h-64 w-full flex items-center justify-center mb-6">
-<div className="absolute inset-0 medical-radar bg-green-600/5 border border-tertiary/20"></div>
-<div className="absolute inset-4 medical-radar bg-green-600/20 border-2 border-tertiary"></div>
-<div className="absolute inset-14 medical-radar bg-green-600/30 border border-tertiary/50"></div>
-<div className="z-10 text-center">
-<p className="text-xs font-medium uppercase tracking-wider text-green-600 uppercase">Symptom Cluster</p>
-<p className="text-xl font-bold font-bold text-gray-900">Intense</p>
-</div>
-{/* Axis Labels */}
-<span className="absolute top-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Fatigue</span>
-<span className="absolute bottom-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Inflammation</span>
-<span className="absolute right-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Dyspnea</span>
-<span className="absolute left-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant">Nausea</span>
+{/* Symptom Levels List */}
+<div className="space-y-4 mb-6">
+  <div className="flex justify-between items-center text-sm font-semibold text-gray-900 border-b border-gray-100 pb-2">
+    <span>Symptom Intensity</span>
+    <span className="text-xs text-gray-500 uppercase">Intense Cluster</span>
+  </div>
+  <div className="space-y-3">
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Fatigue</span>
+        <span className="font-bold text-gray-900">90%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-green-500 rounded-full" style={{ width: "90%" }}></div>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Inflammation</span>
+        <span className="font-bold text-gray-900">85%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-green-500 rounded-full" style={{ width: "85%" }}></div>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Dyspnea</span>
+        <span className="font-bold text-gray-900">80%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-green-500 rounded-full" style={{ width: "80%" }}></div>
+      </div>
+    </div>
+    <div>
+      <div className="flex justify-between text-xs mb-1">
+        <span className="font-medium text-gray-700">Nausea</span>
+        <span className="font-bold text-gray-900">50%</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-green-500 rounded-full" style={{ width: "50%" }}></div>
+      </div>
+    </div>
+  </div>
 </div>
 <div className="space-y-4">
 <div>

@@ -74,17 +74,16 @@ export default function Page() {
  </li>
 </ul>
 </div>
-<div className="relative h-48 bg-slate-50-container-low rounded-xl overflow-hidden border border-gray-200">
-<img alt="Data visualization of neural clusters" className="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="A sophisticated data visualization showing complex neural network clusters and connected nodes in glowing cyan and emerald tones. The visualization uses high-fidelity line work and particle effects against a , deep navy background. The overall aesthetic is futuristic, clean, and representative of advanced medical artificial intelligence processing complex datasets." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDffMmesG2JiyRSQc5HrEk6f3n0xrf4AbVzlcxSAt-CorsITi4dS9JtaMKQIf8WPN2GuidytZhQedS-cct2nZu3eneBgTAjqxczYWCF5dWBlnGuHe05lMR-hfWwnTEmzFNx7gTHNNqEa9xbMiGCcpaLtN8CMZ-ssmMQ6HYMRJoif9INGrYCRRH0vyII2IakyRnN-WshdRRE7pa-go2e9-inl0ccLGmcotSsYzcdOeBjPAYn6pFHMLMFvASRzQlx4mD6xGwgZRcTuXbH"/>
-<div className="absolute inset-0 p-4 flex flex-col justify-end bg-gradient-to-t from-surface-container via-transparent">
-<p className="text-xs font-medium uppercase tracking-wider text-gray-900 uppercase opacity-70">Neural Path Analysis</p>
-<div className="flex gap-1 mt-2">
-<div className="h-1 flex-1 bg-teal-600"></div>
-<div className="h-1 flex-1 bg-teal-600/40"></div>
-<div className="h-1 flex-1 bg-teal-600/20"></div>
-<div className="h-1 flex-1 bg-teal-600/10"></div>
-</div>
-</div>
+<div className="bg-slate-50 p-6 rounded-xl border border-gray-200 flex flex-col justify-center gap-4">
+  <div>
+    <span className="text-3xl font-extrabold text-teal-600">14,200</span>
+    <p className="text-xs font-semibold text-gray-500 uppercase mt-1">Patient Profiles Analyzed</p>
+  </div>
+  <div className="h-px bg-gray-200"></div>
+  <div>
+    <span className="text-3xl font-extrabold text-green-600">94.2%</span>
+    <p className="text-xs font-semibold text-gray-500 uppercase mt-1">Model Predictive Accuracy</p>
+  </div>
 </div>
 </div>
 </div>
@@ -124,57 +123,58 @@ export default function Page() {
 <p className=" text-gray-900-variant italic">&quot;All models show increased convergence over last 72 hours.&quot;</p>
 </div>
 </div>
-{/* Disease Correlation Heatmap */}
-<div className="md:col-span-7 bg-white p-6 rounded-xl border border-gray-200 shadow-sm rounded-2xl p-6">
-<div className="flex justify-between items-center mb-6">
-<h3 className="text-lg font-semibold text-gray-900">Co-morbidity Matrix</h3>
-<div className="flex items-center gap-2">
-<div className="w-3 h-3 rounded bg-slate-50-container-highest"></div>
-<span className=" text-xs font-medium uppercase tracking-wider text-gray-900-variant">Low</span>
-<div className="w-3 h-3 rounded bg-teal-600"></div>
-<span className=" text-xs font-medium uppercase tracking-wider text-gray-900-variant">High</span>
-</div>
-</div>
-<div className="grid grid-cols-8 gap-1">
-{/* Simulated Heatmap Grid */}
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/20 rounded"></div>
-<div className="heatmap-cell bg-teal-600/40 rounded"></div>
-<div className="heatmap-cell bg-teal-600/60 rounded shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]"></div>
-<div className="heatmap-cell bg-teal-600/20 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/05 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/30 rounded"></div>
-<div className="heatmap-cell bg-teal-600/50 rounded"></div>
-<div className="heatmap-cell bg-teal-600/80 rounded shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]"></div>
-<div className="heatmap-cell bg-teal-600 rounded shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]"></div>
-<div className="heatmap-cell bg-teal-600/60 rounded shadow-[inset_0_0_10px_rgba(0,0,0,0.3)]"></div>
-<div className="heatmap-cell bg-teal-600/30 rounded"></div>
-<div className="heatmap-cell bg-teal-600/20 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/20 rounded"></div>
-<div className="heatmap-cell bg-teal-600/40 rounded"></div>
-<div className="heatmap-cell bg-teal-600/20 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/05 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/20 rounded"></div>
-<div className="heatmap-cell bg-teal-600/05 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/20 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/05 rounded"></div>
-<div className="heatmap-cell bg-teal-600/05 rounded"></div>
-<div className="heatmap-cell bg-teal-600/10 rounded"></div>
-<div className="heatmap-cell bg-teal-600/05 rounded"></div>
-</div>
-<div className="mt-4 flex justify-between text-xs font-medium uppercase tracking-wider text-gray-900-variant uppercase tracking-widest px-2">
-<span>Cardiovascular</span>
-<span>Neurological</span>
-<span>Autoimmune</span>
-</div>
+{/* Disease Correlation Matrix */}
+<div className="md:col-span-7 bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+  <div className="flex justify-between items-center mb-6">
+    <h3 className="text-lg font-semibold text-gray-900">Co-morbidity Correlation Matrix</h3>
+    <span className="text-xs text-teal-600 font-bold uppercase tracking-wider">Semantic Similarity</span>
+  </div>
+  
+  <div className="space-y-4">
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span className="font-semibold text-gray-700">Cardiovascular Co-morbidity</span>
+        <span className="font-bold text-teal-600">84% Match</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-600 rounded-full" style={{ width: "84%" }}></div>
+      </div>
+      <p className="text-xs text-gray-500 mt-1">High correlation with hypertension and chronic heart failure profiles.</p>
+    </div>
+    
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span className="font-semibold text-gray-700">Metabolic Disorders</span>
+        <span className="font-bold text-teal-600">72% Match</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-600 rounded-full" style={{ width: "72%" }}></div>
+      </div>
+      <p className="text-xs text-gray-500 mt-1">Direct link to insulin resistance and type II diabetic patient cohorts.</p>
+    </div>
+
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span className="font-semibold text-gray-700">Neurological Risk Factors</span>
+        <span className="font-bold text-teal-600">68% Match</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-600 rounded-full" style={{ width: "68%" }}></div>
+      </div>
+      <p className="text-xs text-gray-500 mt-1">Secondary links found in early cognitive decline patient clusters.</p>
+    </div>
+
+    <div>
+      <div className="flex justify-between text-sm mb-1">
+        <span className="font-semibold text-gray-700">Autoimmune Indicators</span>
+        <span className="font-bold text-teal-600">45% Match</span>
+      </div>
+      <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-full bg-teal-600 rounded-full" style={{ width: "45%" }}></div>
+      </div>
+      <p className="text-xs text-gray-500 mt-1">Moderate overlap with systemic inflammatory responses.</p>
+    </div>
+  </div>
 </div>
 {/* Anomaly Detection */}
 <div className="md:col-span-5 bg-white p-6 rounded-xl border border-gray-200 shadow-sm rounded-2xl p-6 flex flex-col">
@@ -221,35 +221,92 @@ export default function Page() {
 </div>
 </div>
 </div>
-<div className="h-64 relative">
-{/* Grid lines */}
-<div className="absolute inset-0 flex flex-col justify-between">
-<div className="w-full h-px bg-outline-variant/10"></div>
-<div className="w-full h-px bg-outline-variant/10"></div>
-<div className="w-full h-px bg-outline-variant/10"></div>
-<div className="w-full h-px bg-outline-variant/10"></div>
-<div className="w-full h-px bg-outline-variant/10"></div>
+{/* Chart */}
+<div className="relative">
+  {/* Y-axis labels & Chart Area */}
+  <div className="flex">
+    <div className="flex flex-col justify-between text-right pr-3 text-xs text-gray-400 font-medium" style={{ height: "200px" }}>
+      <span>100%</span>
+      <span>75%</span>
+      <span>50%</span>
+      <span>25%</span>
+      <span>0%</span>
+    </div>
+    {/* Chart area */}
+    <div className="flex-1 relative" style={{ height: "200px" }}>
+      {/* Horizontal grid lines */}
+      <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+        {[0,1,2,3,4].map(i => (
+          <div key={i} className="w-full border-t border-gray-100"></div>
+        ))}
+      </div>
+      {/* Bars */}
+      <div className="absolute inset-0 flex items-end justify-around px-4">
+        {[
+          { label: "Baseline",  cog: 35, motor: 40 },
+          { label: "Phase I",   cog: 48, motor: 50 },
+          { label: "Phase II",  cog: 60, motor: 58 },
+          { label: "Phase III", cog: 78, motor: 70 },
+          { label: "Current",   cog: 94, motor: 88 },
+        ].map((phase, i) => (
+          <div key={i} className="flex flex-col items-center gap-1 flex-1">
+            {/* Bar group */}
+            <div className="flex items-end gap-1.5 w-full justify-center" style={{ height: "180px" }}>
+              {/* Cognitive bar */}
+              <div className="relative flex flex-col items-center" style={{ height: "100%" }}>
+                <div
+                  className="w-7 bg-teal-500 rounded-t-md hover:bg-teal-600 transition-colors cursor-default relative group"
+                  style={{ height: `${phase.cog}%`, marginTop: "auto" }}
+                >
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
+                    {phase.cog}%
+                  </div>
+                </div>
+              </div>
+              {/* Motor bar */}
+              <div className="relative flex flex-col items-center" style={{ height: "100%" }}>
+                <div
+                  className="w-7 bg-green-400 rounded-t-md hover:bg-green-500 transition-colors cursor-default relative group"
+                  style={{ height: `${phase.motor}%`, marginTop: "auto" }}
+                >
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-[10px] font-bold px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
+                    {phase.motor}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  {/* X-axis labels */}
+  <div className="flex pl-10 mt-2">
+    {["Baseline", "Phase I", "Phase II", "Phase III", "Current"].map((label, i) => (
+      <div key={i} className={`flex-1 text-center text-xs font-semibold ${label === "Current" ? "text-teal-600" : "text-gray-500"}`}>
+        {label}
+      </div>
+    ))}
+  </div>
 </div>
-{/* Simulated SVG Chart Lines */}
-<svg className="absolute inset-0 w-full h-full" preserveaspectratio="none">
-<path d="M0,180 Q100,160 200,190 T400,100 T600,140 T800,40 T1000,60" fill="none" stroke="#89ceff" stroke-width="3"></path>
-<path d="M0,200 Q150,210 300,150 T600,180 T900,120 T1000,140" fill="none" stroke="#4edea3" stroke-width="3"></path>
-{/* Highlight Point */}
-<circle className="animate-pulse" cx="800" cy="40" fill="#89ceff" r="6"></circle>
-<circle cx="800" cy="40" fill="none" r="12" stroke="#89ceff" stroke-opacity="0.3"></circle>
-</svg>
-{/* Tooltip Overlay */}
-<div className="absolute top-4 left-[76%] p-3 bg-white p-6 rounded-xl border border-gray-200 shadow-sm rounded-lg border border-teal-200 z-10">
-<p className="text-xs font-medium uppercase tracking-wider text-teal-600">PEAK PERFORMANCE</p>
-<p className=" font-bold text-gray-900">Shift detected at T+120d</p>
-</div>
-</div>
-<div className="flex justify-between mt-6 px-2 text-xs font-medium uppercase tracking-wider text-gray-900-variant uppercase">
-<span>Baseline</span>
-<span>Phase I</span>
-<span>Phase II</span>
-<span>Phase III</span>
-<span>Current</span>
+
+{/* Summary stats row */}
+<div className="mt-6 pt-4 border-t border-gray-100 grid grid-cols-3 gap-4">
+  <div className="text-center">
+    <p className="text-2xl font-bold text-teal-600">+59%</p>
+    <p className="text-xs text-gray-500 mt-1 font-medium">Cognitive Score Growth</p>
+    <p className="text-xs text-gray-400">Baseline &#8594; Current</p>
+  </div>
+  <div className="text-center">
+    <p className="text-2xl font-bold text-green-600">+48%</p>
+    <p className="text-xs text-gray-500 mt-1 font-medium">Motor Function Growth</p>
+    <p className="text-xs text-gray-400">Baseline &#8594; Current</p>
+  </div>
+  <div className="text-center">
+    <p className="text-2xl font-bold text-gray-800">180 days</p>
+    <p className="text-xs text-gray-500 mt-1 font-medium">Observation Period</p>
+    <p className="text-xs text-gray-400">5 clinical phases</p>
+  </div>
 </div>
 </div>
 </div>

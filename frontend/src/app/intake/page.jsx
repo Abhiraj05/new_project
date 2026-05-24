@@ -70,7 +70,7 @@ export default function Page() {
           </div>
         </header>
 
-        <div className="p-8 max-w-7xl mx-auto w-full flex-1 space-y-6">
+        <div className="p-8 w-full flex-1 space-y-6">
           <header className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900">Upload Research Reports</h2>
             <p className="text-gray-500 mt-2">Ingest unstructured clinical PDFs for AI extraction and vector indexing.</p>

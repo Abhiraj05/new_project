@@ -23,7 +23,7 @@ export default function Page() {
             </div>
           </div>
         </header>
-        <div className="p-8 max-w-[1600px] mx-auto w-full flex-1 flex flex-col xl:flex-row gap-6 h-[calc(100vh-4rem)]">
+        <div className="p-8 w-full flex-1 flex flex-col xl:flex-row gap-6 h-[calc(100vh-4rem)]">
           {/* Graph Workspace */}
 {/* Simple Structured Relationship View */}
 <div className="flex-1 overflow-y-auto min-h-[500px] rounded-xl border border-gray-200 shadow-sm bg-white p-8">
