@@ -1,5 +1,6 @@
-from pydantic import BaseModel,Field
+from pydantic import BaseModel, Field
+
 
 class User(BaseModel):
-    email:str=Field(...,"user email id")
-    password:str=Field(...,"user password")
+    email: str = Field(description="user email id")
+    password: str = Field(description="user password")
