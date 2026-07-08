@@ -99,7 +99,7 @@ def process_user_query(message: Messages, current_user=Depends(get_current_user)
     response = answer_user_query(user_id, file_id, user_message)
 
     if response is None:
-        return {"message": "no response failed to answer question !"}
+        return {"message": "no response bot failed to answer question !"}
     else:
         new_message = Messages(user_id=current_user.id,
                                user_msg=user_message, bot_msg=response.bot)
