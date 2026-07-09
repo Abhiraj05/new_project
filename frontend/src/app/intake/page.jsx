@@ -109,7 +109,7 @@ export default function Page() {
                 <span className="text-cyan-400">{files.length} Files</span>
               </div>
 
-              <div className="p-4 space-y-4 max-h-[420px] overflow-y-auto">
+              <div className="p-4 space-y-4 max-h-105 overflow-y-auto">
                 {files.length===0 && (
                   <p className="text-slate-400 text-center py-10">
                     No files uploaded.

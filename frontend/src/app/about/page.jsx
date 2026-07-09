@@ -85,7 +85,7 @@ export default function Page() {
 
     {/* Bottom Section */}
 
-    <div className="mt-14 rounded-3xl bg-gradient-to-r from-cyan-600 to-blue-600 p-10 text-white">
+    <div className="mt-14 rounded-3xl bg-linear-to-r from-cyan-600 to-blue-600 p-10 text-white">
       <h2 className="text-3xl font-bold">
         Built for Modern Healthcare
       </h2>
