@@ -2,83 +2,111 @@ import Sidebar from "@/components/Sidebar";
 
 export default function Page() {
   return (
-    <div className="bg-slate-50 text-slate-900 min-h-screen flex">
+    <div className="min-h-screen flex bg-slate-950 text-white">
       <Sidebar />
       <main className="flex-1 lg:ml-72 flex flex-col min-h-screen">
-        <header className="bg-white sticky top-0 z-40 border-b border-gray-200 flex justify-between items-center h-16 px-8 w-full shadow-sm">
+        
+        {/* Simple Header */}
+        <header className="sticky top-0 z-40 h-20 border-b border-slate-800 bg-slate-950/80 backdrop-blur-md flex items-center justify-between px-8">
           <div className="flex items-center gap-6">
-            <h1 className="text-xl font-bold">Settings</h1>
+            <h1 className="text-2xl font-bold">Settings</h1>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="flex gap-2 items-center bg-teal-50 text-teal-700 px-3 py-1 rounded-full border border-teal-100">
-              <span className="material-symbols-outlined text-[18px]" data-icon="auto_awesome">auto_awesome</span>
-              <span className="text-sm font-medium">AI Engine: Online</span>
-            </div>
+          <div className="flex items-center gap-2 rounded-full bg-cyan-500/10 px-5 py-2 text-cyan-400 text-base font-semibold border border-cyan-500/20">
+            <span className="material-symbols-outlined text-xl">auto_awesome</span>
+            AI Engine Online
           </div>
         </header>
         
-        <div className="p-8 max-w-5xl mx-auto w-full flex-1 space-y-6">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div className="border-b border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900">Profile Settings</h2>
-              <p className="text-sm text-gray-500 mt-1">Manage your account information and preferences.</p>
+        {/* Core Content Container */}
+        <div className="max-w-5xl mx-auto w-full p-8 space-y-10 flex-1">
+          
+          {/* 1. Profile Settings Card */}
+          <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
+            <div className="border-b border-slate-800/60 p-8">
+              <h2 className="text-2xl font-bold text-white">Profile Settings</h2>
+              <p className="text-base text-slate-400 mt-2">Manage your account information and preferences.</p>
             </div>
             
-            <div className="p-6 space-y-6">
+            <div className="p-8 space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                  <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" defaultValue="Sarah" />
+                  <label className="block text-base font-semibold text-slate-300 mb-2">First Name</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-lg text-white outline-none focus:border-cyan-400 transition-all" 
+                    defaultValue="Sarah" 
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                  <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" defaultValue="Chen" />
+                  <label className="block text-base font-semibold text-slate-300 mb-2">Last Name</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-lg text-white outline-none focus:border-cyan-400 transition-all" 
+                    defaultValue="Chen" 
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all" defaultValue="dr.chen@clinical.org" />
+                  <label className="block text-base font-semibold text-slate-300 mb-2">Email Address</label>
+                  <input 
+                    type="email" 
+                    className="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-xl text-lg text-white outline-none focus:border-cyan-400 transition-all" 
+                    defaultValue="dr.chen@clinical.org" 
+                  />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
-                  <input type="text" disabled className="w-full px-4 py-2 border border-gray-200 bg-gray-50 text-gray-500 rounded-lg outline-none" defaultValue="Lead Researcher" />
+                  <label className="block text-base font-semibold text-slate-300 mb-2">Role</label>
+                  <input 
+                    type="text" 
+                    disabled 
+                    className="w-full px-4 py-3 bg-slate-950/40 border border-slate-800/50 text-slate-500 rounded-xl text-lg cursor-not-allowed outline-none" 
+                    defaultValue="Lead Researcher" 
+                  />
                 </div>
               </div>
             </div>
             
-            <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end gap-3">
-              <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">Cancel</button>
-              <button className="px-4 py-2 text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 rounded-lg transition-colors shadow-sm">Save Changes</button>
+            <div className="bg-slate-950/40 px-8 py-5 border-t border-slate-800/60 flex justify-end gap-4">
+              <button className="px-6 py-2.5 text-base font-bold text-slate-400 hover:text-white rounded-xl transition-colors">
+                Cancel
+              </button>
+              <button className="px-6 py-2.5 text-base font-bold text-slate-900 bg-cyan-500 hover:bg-cyan-400 rounded-xl transition-colors shadow-lg shadow-cyan-500/10">
+                Save Changes
+              </button>
             </div>
           </div>
           
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div className="border-b border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900">Application Preferences</h2>
-              <p className="text-sm text-gray-500 mt-1">Customize how PatientGraph AI works for you.</p>
+          {/* 2. Application Preferences Card */}
+          <div className="bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
+            <div className="border-b border-slate-800/60 p-8">
+              <h2 className="text-2xl font-bold text-white">Application Preferences</h2>
+              <p className="text-base text-slate-400 mt-2">Customize how PatientGraph AI works for you.</p>
             </div>
             
-            <div className="p-6 space-y-4">
-              <div className="flex items-center justify-between py-2 border-b border-gray-100 pb-4">
+            <div className="p-8 space-y-6">
+              <div className="flex items-center justify-between py-2 border-b border-slate-800/40 pb-6">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900">Email Notifications</h3>
-                  <p className="text-sm text-gray-500 mt-1">Receive weekly summaries of new clinical insights.</p>
+                  <h3 className="text-lg font-semibold text-white">Email Notifications</h3>
+                  <p className="text-base text-slate-400 mt-1">Receive weekly summaries of new clinical insights.</p>
                 </div>
-                <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-teal-600 cursor-pointer">
-                  <span className="inline-block h-4 w-4 translate-x-6 rounded-full bg-white transition"></span>
+                {/* Custom Toggle (Active/Cyan) */}
+                <div className="relative inline-flex h-7 w-12 items-center rounded-full bg-cyan-500 cursor-pointer transition-colors">
+                  <span className="inline-block h-5 w-5 translate-x-6 rounded-full bg-slate-950 transition-transform"></span>
                 </div>
               </div>
               
               <div className="flex items-center justify-between py-2">
                 <div>
-                  <h3 className="text-sm font-medium text-gray-900">Dark Mode</h3>
-                  <p className="text-sm text-gray-500 mt-1">Toggle the application theme.</p>
+                  <h3 className="text-lg font-semibold text-white">Dark Mode</h3>
+                  <p className="text-base text-slate-400 mt-1">Toggle the application theme.</p>
                 </div>
-                <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 cursor-pointer">
-                  <span className="inline-block h-4 w-4 translate-x-1 rounded-full bg-white transition"></span>
+                {/* Custom Toggle (Active/Cyan for Dark Theme UI) */}
+                <div className="relative inline-flex h-7 w-12 items-center rounded-full bg-cyan-500 cursor-pointer transition-colors">
+                  <span className="inline-block h-5 w-5 translate-x-6 rounded-full bg-slate-950 transition-transform"></span>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </main>
     </div>

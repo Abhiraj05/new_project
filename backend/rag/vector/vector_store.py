@@ -10,6 +10,3 @@ def create_or_get_vector_db():
         collection_name='sample')
     
     return vector_store
-
-def create_or_get():
-    print()
