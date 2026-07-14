@@ -8,4 +8,5 @@ pyjwt
 langchain-google-genai
 langchain_text_splitters
 chromadb
+langchain_chroma    
 

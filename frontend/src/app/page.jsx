@@ -1,216 +1,165 @@
 import Link from "next/link";
-import Sidebar from "@/components/Sidebar";
+
 export default function Page() {
   return (
-    <div className="bg-slate-50 text-slate-900 min-h-screen flex">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-white">
       
-      <main className="flex-1 flex flex-col min-h-screen">
-        <header className="bg-white sticky top-0 z-40 border-b border-gray-200 flex justify-between items-center h-16 px-8 w-full shadow-sm">
-          <div className="flex items-center gap-6">
-            <div className="relative group">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" data-icon="search">search</span>
-              <input
-                className="bg-gray-100 border-none rounded-md pl-10 pr-4 py-2 w-80 text-sm focus:ring-2 focus:ring-teal-500 transition-all outline-none"
-                placeholder="Search Patient ID, Symptom..."
-                type="text"
-              />
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex gap-2 items-center bg-teal-50 text-teal-700 px-3 py-1 rounded-full border border-teal-100">
-              <span className="material-symbols-outlined text-[18px]" data-icon="auto_awesome">auto_awesome</span>
-              <span className="text-sm font-medium">AI Engine: Online</span>
-            </div>
-          </div>
-        </header>
-        <div className="w-full flex-1">
-          {/* Hero Section */}
-<section className="relative pt-24 pb-32 px-margin overflow-hidden">
-<div className="max-w-container-max mx-auto grid lg:grid-cols-2 gap-16 items-center">
-<div className="z-10">
-<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white p-6 rounded-xl border border-gray-200 shadow-sm border border-teal-200 mb-6">
-<span className="h-2 w-2 rounded-full bg-green-600 shadow-[0_0_8px_#4edea3]"></span>
-<span className="text-xs font-medium uppercase tracking-wider text-green-600 uppercase tracking-widest">Enterprise Intelligence Platform</span>
-</div>
-<h1 className="text-3xl font-bold text-gray-900 mb-6">
- Transform Clinical Records Into <span className="text-teal-600">AI-Powered</span> Medical Intelligence
- </h1>
-<p className="text-lg text-gray-900-variant mb-10 max-w-xl">
- Leverage semantic patient retrieval and structured extraction to accelerate clinical research and improve patient outcomes through high-fidelity data synthesis.
- </p>
-<div className="flex flex-wrap gap-4">
-<Link href="/dashboard" className="inline-block px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-lg shadow-[0_0_20px_rgba(137,206,255,0.3)] hover:scale-[1.02] transition-transform active:scale-95">
- Launch Dashboard
- </Link>
-<Link href="/intake" className="inline-block px-8 py-4 bg-white p-6 rounded-xl border border-gray-200 shadow-sm text-gray-900 border border-gray-200 hover:bg-slate-50-container-high transition-colors font-bold rounded-lg">
- Upload Reports
- </Link>
-</div>
-<div className="mt-12 flex items-center gap-6">
-<div className="flex -space-x-3">
-<img className="h-10 w-10 rounded-full border-2 border-surface" data-alt="A male surgeon in his 40s looking confident in a blue clinical environment with medical technology in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX-Y_jVLdBDdGXfPp7-CpaI01dZQX6ee7OR9NQuUrOv2NEiTpczVMWBlYLVWCnNZerE6oMiv08GFJ7OOeWaU4FJXtKbVhvG7wJkPtbPIyoQptqwbihqPzRrz_Ye3J1GbaAlWcoe9Cs2wMLp_PBEJx0kHQEsgluEE2cI2l1W2rQ5qdXQ2q9rnonDnvG65Gp47kjZX7GYFf3eDFQi7dgHUs7xTw0-v7y4ln-MXPSGpBA8aZgSXhBxpupW-CptgbDIkLX2uANRk26TXq1"/>
-<img className="h-10 w-10 rounded-full border-2 border-surface" data-alt="A professional female researcher in a lab setting with soft lighting and clinical equipment in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAPGZtcYJeTuFU9GeiMYcSNYh3yZVUE7Z3dMeh9L0vMjS3tETtv87mAMOQANFXkBKQgq3GM108IH04UqF6cRiuE36gSs0OqdnoQ4rGF3Ghm0kwXhVkDlqoLT_py9xUlB9vNG7yrYDQFeYaQ1j_2u5rjxY9zGBSK3DyTctKlDbuhGb2sbPRZmdPsh42G7ccEts40aQ-lCvX6FflVOEGAxEngCBT_1_BYWJO-70TcbnahOenFyeNg0djEu0vIAzojOCxtqAXfR7-Sovq"/>
-<div className="h-10 w-10 rounded-full border-2 border-surface bg-slate-50-container-highest flex items-center justify-center ">+40</div>
-</div>
-<p className="text-sm font-medium text-gray-900-variant">Trusted by 250+ Clinical Institutes</p>
-</div>
-</div>
-<div className="relative">
-{/* Glassmorphism Mockup */}
-<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-6 rounded-xl shadow-2xl relative z-10 ai-shimmer-border">
-<img alt="Dashboard Preview" className="rounded-lg opacity-90" data-alt="A sleek, futuristic clinical research dashboard showing complex data visualizations, heatmaps, and patient connectivity graphs. The UI features a slate theme with vibrant cyan and emerald accents. Floating glass cards show medical entities and clinical metrics with soft glowing pulses. The atmosphere is highly technical, clean, and advanced, representing a next-generation medical software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoBBdOwT06O8QfbCxmcPsp8apkJK0LqaBKw8CjX4EEjmFWspye76WMla_JWyi2ESkvXKCtghqNrA84yG-BJIOyVwh-u_Rgfo6NbbBXjmCWIi14zXQbMva8cHjODpyWkUGNX76ayQQdivopvWB5HoRRzoqALAFZBJ4SuTtY0fVnsbKehN2iflp4FvceqssYDhCtdLcKexgm9HOUpyLx-9AzJ4o9nhLpq9FjJx4q2_EEyDGlArutF2Z3xAli5UpfAHCdx5G6VtdseaqB"/>
-{/* Floating Medical AI Cards */}
-<div className="absolute -top-10 -right-10 bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-4 rounded-lg border-teal-200 w-56 shadow-xl">
-<div className="flex items-center gap-3 mb-2">
-<span className="material-symbols-outlined text-teal-600" style={{"fontVariationSettings": "'FILL' 1"}}>psychology</span>
-<span className="text-sm font-medium font-bold">AI Synthesis</span>
-</div>
-<div className="space-y-2">
-<div className="h-1.5 w-full bg-slate-50-container-highest rounded-full overflow-hidden">
-<div className="h-full bg-teal-600 w-3/4"></div>
-</div>
-<p className="text-[10px] text-gray-900-variant font-mono">EXTRACTING: ONCOLOGY_PATH_04</p>
-</div>
-</div>
+      {/* HEADER / NAVIGATION BAR */}
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
+        <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-6">
+          
+          {/* Logo */}
+          <h1 className="text-2xl font-bold">
+            <Link href="/">
+              Patient<span className="text-cyan-400">Graph AI</span>
+            </Link>
+          </h1>
 
-</div>
-{/* Background decor */}
-<div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-teal-600/5 blur-[120px] rounded-full"></div>
-</div>
-</div>
-</section>
-{/* Stats Section */}
-<section className="bg-slate-50-container-lowest py-20 px-margin">
-<div className="max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
-<div className="text-center">
-<div className="text-3xl font-bold text-teal-600 mb-2">500K+</div>
-<div className="text-xs font-medium uppercase tracking-wider uppercase tracking-widest text-gray-900-variant">Medical Reports</div>
-</div>
-<div className="text-center">
-<div className="text-3xl font-bold text-green-600 mb-2">92%</div>
-<div className="text-xs font-medium uppercase tracking-wider uppercase tracking-widest text-gray-900-variant">Extraction Accuracy</div>
-</div>
-<div className="text-center">
-<div className="text-3xl font-bold text-gray-900 mb-2">70%</div>
-<div className="text-xs font-medium uppercase tracking-wider uppercase tracking-widest text-gray-900-variant">Faster Analysis</div>
-</div>
-<div className="text-center">
-<div className="text-3xl font-bold text-blue-600 mb-2">120K+</div>
-<div className="text-xs font-medium uppercase tracking-wider uppercase tracking-widest text-gray-900-variant">Complex Cases</div>
-</div>
-</div>
-</section>
-{/* Features Bento Grid */}
-<section className="py-32 px-margin">
-<div className="max-w-container-max mx-auto">
-<div className="mb-20 text-center max-w-2xl mx-auto">
-<h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Clinical Capabilities</h2>
-<p className="text-lg text-gray-900-variant">Unlock the latent intelligence buried in unstructured medical data with our specialized clinical AI engine.</p>
-</div>
-<div className="grid md:grid-cols-3 gap-6">
-{/* Feature 1: AI Structured Extraction */}
-<div className="md:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-8 rounded-xl flex flex-col justify-between overflow-hidden group">
-<div>
-<div className="h-12 w-12 rounded-lg bg-teal-600/10 flex items-center justify-center mb-6 text-teal-600">
-<span className="material-symbols-outlined text-3xl" data-icon="upload_file">upload_file</span>
-</div>
-<h3 className="text-xl font-bold mb-4">AI Structured Extraction</h3>
-<p className="text-sm text-gray-900-variant max-w-lg">Automatically convert messy PDFs, handwritten notes, and scanned images into clean, standardized medical records with validated entity mapping.</p>
-</div>
-<div className="mt-8 flex gap-4">
-<span className="px-3 py-1 rounded bg-slate-50-container-highest font-mono text-teal-600 border border-teal-200">OCR Engine v4.2</span>
-<span className="px-3 py-1 rounded bg-slate-50-container-highest font-mono text-green-600 border border-tertiary/20">Entity Normalization</span>
-</div>
-</div>
-{/* Feature 2: Semantic Patient Search */}
-<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-8 rounded-xl flex flex-col group border-primary/10">
-<div className="h-12 w-12 rounded-lg bg-teal-600/10 flex items-center justify-center mb-6 text-teal-600">
-<span className="material-symbols-outlined text-3xl" data-icon="person_search">person_search</span>
-</div>
-<h3 className="text-lg font-semibold mb-4">Semantic Search</h3>
-<p className="text-xs text-gray-900-variant">Search by symptoms and patterns rather than just keywords. Find relevant cohorts across millions of records instantly.</p>
-</div>
-{/* Feature 3: Similar Case Retrieval */}
-<div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-8 rounded-xl border-secondary/10">
-<div className="h-12 w-12 rounded-lg bg-blue-600/10 flex items-center justify-center mb-6 text-blue-600">
-<span className="material-symbols-outlined text-3xl" data-icon="compare_arrows">compare_arrows</span>
-</div>
-<h3 className="text-lg font-semibold mb-4">Case Retrieval</h3>
-<p className="text-xs text-gray-900-variant">Automatically surface clinically similar cases based on multidimensional patient embeddings for comparative research.</p>
-</div>
-{/* Feature 4: Clinical Analytics */}
-<div className="md:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-8 rounded-xl relative overflow-hidden flex flex-col md:flex-row items-center gap-8">
-<div className="flex-1">
-<div className="h-12 w-12 rounded-lg bg-green-600/10 flex items-center justify-center mb-6 text-green-600">
-<span className="material-symbols-outlined text-3xl" data-icon="analytics">analytics</span>
-</div>
-<h3 className="text-xl font-bold mb-4">Deep Clinical Analytics</h3>
-<p className="text-sm text-gray-900-variant">Visualize trend lines, medication efficacy, and longitudinal patient health outcomes through high-density interactive reports.</p>
-</div>
-<div className="w-full md:w-64 aspect-square bg-slate-50-container-highest/50 rounded-lg border border-gray-200 p-4 flex items-end gap-2">
-<div className="flex-1 bg-green-600/40 h-[60%] rounded-t"></div>
-<div className="flex-1 bg-green-600/60 h-[80%] rounded-t"></div>
-<div className="flex-1 bg-green-600/30 h-[40%] rounded-t"></div>
-<div className="flex-1 bg-green-600/90 h-[100%] rounded-t"></div>
-<div className="flex-1 bg-green-600/50 h-[70%] rounded-t"></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-{/* Architecture Flow */}
-<section className="bg-slate-50-dim py-32 px-margin border-y border-gray-200">
-<div className="max-w-container-max mx-auto text-center">
-<h2 className="text-2xl font-bold mb-4 text-gray-900">Precision Data Architecture</h2>
-<p className="text-lg text-gray-900-variant mb-20 max-w-2xl mx-auto">From raw clinical documents to actionable medical insights in milliseconds.</p>
-<div className="grid grid-cols-2 md:grid-cols-6 gap-4 items-center">
-<div className="flex flex-col items-center gap-4">
-<div className="h-16 w-16 bg-white p-6 rounded-xl border border-gray-200 shadow-sm rounded-full flex items-center justify-center text-teal-600 border-teal-200">
-<span className="material-symbols-outlined text-2xl" data-icon="picture_as_pdf">picture_as_pdf</span>
-</div>
-<span className="text-sm font-medium ">PDF Upload</span>
-</div>
-<div className="hidden md:flex justify-center text-outline-variant">
-<span className="material-symbols-outlined">trending_flat</span>
-</div>
-<div className="flex flex-col items-center gap-4">
-<div className="h-16 w-16 bg-white p-6 rounded-xl border border-gray-200 shadow-sm rounded-full flex items-center justify-center text-blue-600 border-secondary/30">
-<span className="material-symbols-outlined text-2xl" data-icon="description">description</span>
-</div>
-<span className="text-sm font-medium ">OCR &amp; Extraction</span>
-</div>
-<div className="hidden md:flex justify-center text-outline-variant">
-<span className="material-symbols-outlined">trending_flat</span>
-</div>
-<div className="flex flex-col items-center gap-4">
-<div className="h-16 w-16 bg-white p-6 rounded-xl border border-gray-200 shadow-sm rounded-full flex items-center justify-center text-green-600 border-tertiary/30">
-<span className="material-symbols-outlined text-2xl" data-icon="hub">hub</span>
-</div>
-<span className="text-sm font-medium ">Knowledge Graph</span>
-</div>
-<div className="flex flex-col items-center gap-4 md:col-span-1 col-span-2 mt-8 md:mt-0">
-<div className="px-6 py-4 bg-teal-600 text-white rounded-lg font-bold">
- AI INSIGHTS
- </div>
-</div>
-</div>
-</div>
-</section>
-{/* CTA Section */}
-<section className="py-32 px-margin relative overflow-hidden">
-<div className="max-w-container-max mx-auto bg-white p-6 rounded-xl border border-gray-200 shadow-sm p-16 rounded-3xl text-center relative z-10">
-<h2 className="text-3xl font-bold text-gray-900 mb-8">Ready to accelerate your clinical research?</h2>
-<p className="text-lg text-gray-900-variant mb-12 max-w-2xl mx-auto">Join the world&apos;s leading research institutions using PatientGraph AI to decode the complexity of medical records.</p>
-<div className="flex flex-wrap justify-center gap-6">
-<button className="px-12 py-5 bg-teal-600 text-white font-bold rounded-xl shadow-xl hover:shadow-primary/20 transition-all">Get Started Now</button>
-<button className="px-12 py-5 border border-gray-300 text-gray-900 font-bold rounded-xl hover:bg-slate-50-container-high transition-all">Schedule a Demo</button>
-</div>
-</div>
-{/* Decorative light blob */}
-<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-teal-600/10 blur-[100px] -z-10 rounded-full"></div>
-</section>
+        
+
+          {/* Action Buttons: Linked to Authentication Pages */}
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/signin" 
+              className="text-sm font-semibold text-slate-300 hover:text-white transition-colors"
+            >
+              Sign In
+            </Link>
+            <Link 
+              href="/signup" 
+              className="text-sm font-semibold bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-4 py-2 rounded-xl transition-colors shadow-lg shadow-cyan-500/10"
+            >
+              Get Started
+            </Link>
+          </div>
+
         </div>
+      </header>
+
+      {/* MAIN CONTENT WORKSPACE */}
+      <main className="flex-1 min-w-0 overflow-x-hidden">
+        
+        {/* Hero Section */}
+        <section className="relative overflow-hidden py-24">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-slate-950 to-blue-600/20"></div>
+
+          <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-14 items-center px-6">
+            <div>
+              <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-2 text-cyan-300">
+                Enterprise AI Platform
+              </span>
+
+              <h1 className="mt-8 text-6xl font-black leading-tight">
+                AI Powered
+                <span className="block text-cyan-400">Medical Intelligence</span>
+              </h1>
+
+              <p className="mt-6 max-w-xl text-lg text-slate-300">
+                Upload reports, extract structured medical data, perform semantic
+                search and generate AI summaries in seconds.
+              </p>
+
+              <div className="mt-10 flex gap-4">
+                <Link
+                  href="/intake"
+                  className="rounded-xl bg-cyan-500 px-8 py-4 font-semibold hover:bg-cyan-400 grid place-items-center text-slate-900"
+                >
+                  Upload Report
+                </Link>
+
+                <Link
+                  href="/dashboard"
+                  className="rounded-xl border border-slate-700 px-8 py-4 hover:bg-slate-900 grid place-items-center"
+                >
+                  Dashboard
+                </Link>
+              </div>
+            </div>
+
+            {/* AI Summary Progress Bars Widget */}
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
+              <h2 className="text-2xl font-bold">AI Dashboard</h2>
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                {["OCR", "Semantic Search", "LLM Summary", "Case Matching", "Analytics", "Timeline"].map((item) => (
+                  <div key={item} className="rounded-2xl border border-slate-700 bg-slate-900 p-5">
+                    <p className="font-semibold text-cyan-400">{item}</p>
+                    <div className="mt-4 h-2 rounded-full bg-slate-700">
+                      <div className="h-2 w-3/4 rounded-full bg-cyan-400"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="max-w-7xl mx-auto px-6 py-24">
+          <h2 className="mb-12 text-center text-4xl font-bold">Core Features</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {["AI OCR", "LLM Extraction", "Semantic Search", "Patient Timeline", "Analytics", "Vector Search"].map((feature) => (
+              <div key={feature} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur hover:-translate-y-2 transition">
+                <div className="mb-5 text-3xl">✦</div>
+                <h3 className="text-xl font-bold">{feature}</h3>
+                <p className="mt-4 text-slate-400">Faster, smarter healthcare powered by AI.</p>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
+
+      {/* EXTENDED PROFESSIONAL FOOTER */}
+      <footer className="border-t border-slate-900 bg-slate-950 text-slate-400 py-12 mt-auto">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+          
+          {/* Brand Column */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-bold text-white">
+              Patient<span className="text-cyan-400">Graph AI</span>
+            </h3>
+            <p className="text-sm text-slate-500">
+              Next-generation intelligence tools built explicitly for clinical research platforms.
+            </p>
+          </div>
+
+          {/* Platform Navigation Links */}
+          <div>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Platform</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li><Link href="/dashboard" className="hover:text-cyan-400 transition-colors">Dashboard</Link></li>
+              <li><Link href="/intake" className="hover:text-cyan-400 transition-colors">Upload Portal</Link></li>
+              <li><Link href="/search" className="hover:text-cyan-400 transition-colors">Semantic Search</Link></li>
+            </ul>
+          </div>
+
+          {/* Security & Compliance Info */}
+          <div>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Security</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li><Link href="/privacy" className="hover:text-cyan-400 transition-colors">HIPAA Compliance</Link></li>
+              <li><Link href="/terms" className="hover:text-cyan-400 transition-colors">Data Encryption</Link></li>
+              <li><Link href="/security" className="hover:text-cyan-400 transition-colors">Privacy Policy</Link></li>
+            </ul>
+          </div>
+
+          {/* Contact / Help Desk */}
+          <div>
+            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Support</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li><Link href="/docs" className="hover:text-cyan-400 transition-colors">Documentation</Link></li>
+              <li><Link href="/support" className="hover:text-cyan-400 transition-colors">Help Desk</Link></li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Bottom Legal bar */}
+        <div className="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-900 text-xs text-slate-500 flex flex-col md:flex-row justify-between gap-4">
+          <p>&copy; 2026 PatientGraph AI Technologies Inc. All rights reserved.</p>
+          <p>Protected by end-to-end enterprise military-grade encryption systems.</p>
+        </div>
+      </footer>
+
     </div>
   );
 }

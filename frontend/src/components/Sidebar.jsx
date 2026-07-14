@@ -11,49 +11,59 @@ export default function Sidebar() {
     { name: 'Patient Search', href: '/search', icon: 'person_search' },
     { name: 'Case Comparison', href: '/comparison', icon: 'compare_arrows' },
     { name: 'AI Insights', href: '/insights', icon: 'psychology' },
-    { name: 'Knowledge Graph', href: '/knowledge-graph', icon: 'hub' },
+    // { name: 'Knowledge Graph', href: '/knowledge-graph', icon: 'hub' },
     { name: 'Analytics', href: '/case-analysis', icon: 'analytics' },
-    { name: 'System Monitoring', href: '/system-operations', icon: 'monitoring' },
+    // { name: 'System Monitoring', href: '/system-operations', icon: 'monitoring' },
     { name: 'Settings', href: '/settings', icon: 'settings' },
   ];
 
   return (
-    <aside className="bg-white h-screen w-72 flex-col fixed left-0 top-0 border-r border-gray-200 shadow-sm hidden lg:flex z-50">
-      <div className="p-6">
-        <h1 className="text-xl font-bold text-teal-600">
+    <aside className="bg-slate-950 h-screen w-72 flex-col fixed left-0 top-0 border-r border-slate-800 hidden lg:flex z-50 text-white">
+      {/* Sidebar Header */}
+      <div className="p-8 h-20 flex flex-col justify-center border-b border-slate-800/50">
+        <h1 className="text-2xl font-black text-cyan-400 tracking-tight">
           <Link href="/">PatientGraph AI</Link>
         </h1>
-        <p className="text-sm text-gray-500 mt-1">Clinical Research Portal</p>
+        <p className="text-xs text-slate-400 font-medium tracking-wide uppercase mt-0.5">Clinical Research Portal</p>
       </div>
-      <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
+
+      {/* Navigation Links */}
+      <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
         {links.map((link) => {
           const isActive = pathname === link.href;
           return (
             <Link
               key={link.name}
               href={link.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+              className={`flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all ${
                 isActive
-                  ? 'text-teal-700 bg-teal-50 font-semibold'
-                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+                  ? 'text-cyan-400 bg-cyan-500/10 font-bold border border-cyan-500/20 shadow-sm'
+                  : 'text-slate-300 hover:bg-slate-900 hover:text-white border border-transparent'
               }`}
             >
-              <span className="material-symbols-outlined text-xl" data-icon={link.icon}>{link.icon}</span>
-              <span className="text-sm">{link.name}</span>
+              <span className="material-symbols-outlined text-xl">{link.icon}</span>
+              <span className="text-base">{link.name}</span>
             </Link>
           );
         })}
       </nav>
-      <div className="p-6 border-t border-gray-200">
-        <button className="w-full py-2.5 px-4 bg-teal-600 text-white rounded-lg font-semibold flex items-center justify-center gap-2 hover:bg-teal-700 transition-colors shadow-sm text-sm">
-          <span className="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
+
+      {/* Sidebar Footer */}
+      <div className="p-6 border-t border-slate-800 bg-slate-950/50">
+        <button className="w-full py-3 px-4 bg-cyan-500 text-slate-900 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/10 text-base">
+          <span className="material-symbols-outlined text-xl">add_circle</span>
           New Analysis
         </button>
-        <div className="mt-6 flex items-center gap-3">
-          <img alt="Dr. Sarah Chen" className="w-10 h-10 rounded-full object-cover border border-gray-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBztv2IJU4-1cntPgmqXxcoULrNsCkFU7LloDY-58Wjs-TgA2grO1U-qKpi3pneiauxT2G-SfVAz8946CLXu1EPM_iX9tqSa88U0wl1exltuG1lzeyp6dS09_lwHiN-I-veyYY6wXCvUxi5Veg6PCyhuhJHbk4sYJqyS8HJ5G53FSkucSGe_y8hwjfETDOFD-GQogeSCOX58S_qntKO7jBArNeza1BOo3sVY2VrDXHHuiYvXLEngrXET1yE9ZBeecL387R_qnnf8pMz"/>
+        
+        <div className="mt-6 flex items-center gap-3 px-2">
+          <img 
+            alt="Dr. Sarah Chen" 
+            className="w-11 h-11 rounded-full object-cover border-2 border-slate-800" 
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBztv2IJU4-1cntPgmqXxcoULrNsCkFU7LloDY-58Wjs-TgA2grO1U-qKpi3pneiauxT2G-SfVAz8946CLXu1EPM_iX9tqSa88U0wl1exltuG1lzeyp6dS09_lwHiN-I-veyYY6wXCvUxi5Veg6PCyhuhJHbk4sYJqyS8HJ5G53FSkucSGe_y8hwjfETDOFD-GQogeSCOX58S_qntKO7jBArNeza1BOo3sVY2VrDXHHuiYvXLEngrXET1yE9ZBeecL387R_qnnf8pMz"
+          />
           <div className="overflow-hidden">
-            <p className="font-semibold text-sm text-gray-900 truncate">Dr. Sarah Chen</p>
-            <p className="text-xs text-gray-500 truncate">Lead Researcher</p>
+            <p className="font-bold text-base text-white truncate">Dr. Sarah Chen</p>
+            <p className="text-sm text-slate-400 truncate font-medium">Lead Researcher</p>
           </div>
         </div>
       </div>

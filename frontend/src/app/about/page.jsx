@@ -2,31 +2,101 @@ import Link from "next/link";
 import Sidebar from "@/components/Sidebar";
 export default function Page() {
   return (
-    <div className="bg-slate-50 text-slate-900 min-h-screen flex">
-      <Sidebar />
-      <main className="flex-1 lg:ml-72 flex flex-col min-h-screen">
-        <header className="bg-white sticky top-0 z-40 border-b border-gray-200 flex justify-between items-center h-16 px-8 w-full shadow-sm">
-          <div className="flex items-center gap-6">
-            <div className="relative group">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" data-icon="search">search</span>
-              <input
-                className="bg-gray-100 border-none rounded-md pl-10 pr-4 py-2 w-80 text-sm focus:ring-2 focus:ring-teal-500 transition-all outline-none"
-                placeholder="Search Patient ID, Symptom..."
-                type="text"
-              />
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex gap-2 items-center bg-teal-50 text-teal-700 px-3 py-1 rounded-full border border-teal-100">
-              <span className="material-symbols-outlined text-[18px]" data-icon="auto_awesome">auto_awesome</span>
-              <span className="text-sm font-medium">AI Engine: Online</span>
-            </div>
-          </div>
-        </header>
-        <div className="p-8 w-full flex-1 space-y-6">
-          <div className="text-8xl capitalize font-extrabold">about page</div>
-        </div>
-      </main>
+    <div className="flex-1 px-8 py-12">
+  <div className="max-w-5xl mx-auto">
+
+    {/* Heading */}
+    <div className="mb-12">
+      <span className="inline-flex items-center rounded-full bg-cyan-100 px-4 py-1 text-sm font-medium text-cyan-700">
+        About PatientGraph AI
+      </span>
+
+      <h1 className="mt-6 text-5xl font-black text-slate-900">
+        Transforming Healthcare
+        <span className="block text-cyan-600">
+          With Artificial Intelligence
+        </span>
+      </h1>
+
+      <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-8">
+        PatientGraph AI helps hospitals, clinics, and researchers
+        extract structured information from medical reports using
+        Artificial Intelligence. Our platform enables semantic search,
+        intelligent report analysis, and clinical insights within
+        seconds.
+      </p>
     </div>
+
+    {/* Cards */}
+    <div className="grid gap-6 md:grid-cols-3">
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-cyan-100">
+          <span className="material-symbols-outlined text-cyan-600">
+            psychiatry
+          </span>
+        </div>
+
+        <h3 className="text-xl font-bold text-slate-900">
+          AI Powered
+        </h3>
+
+        <p className="mt-3 text-slate-600">
+          Advanced OCR and LLM technology convert medical reports into
+          structured clinical data.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-100">
+          <span className="material-symbols-outlined text-emerald-600">
+            search
+          </span>
+        </div>
+
+        <h3 className="text-xl font-bold text-slate-900">
+          Semantic Search
+        </h3>
+
+        <p className="mt-3 text-slate-600">
+          Search patients using symptoms, diagnoses, medications,
+          and clinical concepts instead of keywords.
+        </p>
+      </div>
+
+      <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-violet-100">
+          <span className="material-symbols-outlined text-violet-600">
+            analytics
+          </span>
+        </div>
+
+        <h3 className="text-xl font-bold text-slate-900">
+          Clinical Insights
+        </h3>
+
+        <p className="mt-3 text-slate-600">
+          Generate AI summaries, visualize patient history,
+          and accelerate clinical decision making.
+        </p>
+      </div>
+
+    </div>
+
+    {/* Bottom Section */}
+
+    <div className="mt-14 rounded-3xl bg-linear-to-r from-cyan-600 to-blue-600 p-10 text-white">
+      <h2 className="text-3xl font-bold">
+        Built for Modern Healthcare
+      </h2>
+
+      <p className="mt-4 max-w-2xl text-cyan-100">
+        Secure, scalable, and designed to simplify medical data
+        processing with the latest AI technologies.
+      </p>
+    </div>
+
+  </div>
+</div>
   );
 }
