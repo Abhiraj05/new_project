@@ -11,9 +11,13 @@ from rag.extractor.extract_text import extract_text
 from rag.chunks.generate_chunks import create_chunks
 from rag.vector.vector_store import create_or_get_vector_db
 from rag.chat.chatbot import answer_user_query
+from cache.redis_client import redis_connection
 
 # app initialise
 app = FastAPI()
+
+# redis client connection
+redis = redis_connection()
 
 # allowed origins
 origins = [""]
