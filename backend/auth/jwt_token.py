@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from jwt import PyJWT, InvalidKeyError
-from schemas.userSchema import User
+from backend.schemas.user_schema import User
 from db.db_connection import create_db_connection
 
 load_dotenv()

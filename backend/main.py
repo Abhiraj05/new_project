@@ -1,9 +1,9 @@
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from schemas.userSchema import User
-from schemas.documentSchema import Document
-from schemas.messagesSchema import Messages
+from schemas.user_schema import User
+from schemas.document_schema import Document
+from schemas.messages_schema import Messages
 from db.db_connection import create_db_connection
 from auth.hash_password import hash_password, verify_password
 from auth.jwt_token import create_token, get_current_user
