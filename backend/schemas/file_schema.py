@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field, FilePath
 from datetime import date
 
 # uploaded file schema
-class UploadedFile(BaseModel):
+class UploadedFileSchema(BaseModel):
     file_id: int = Field(description="file id")
     user_id: int = Field(description="user id")
     file_name: str = Field(description="file name")

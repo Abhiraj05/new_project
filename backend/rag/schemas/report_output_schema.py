@@ -1,10 +1,8 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-# report details schema
-class ReportDetailsSchema(BaseModel):
-    id:str = Field(description="report id")
-    file_id: int = Field(description="file id")
+# report values schema
+class ReportValuesResponse(BaseModel):
     hemoglobin: Optional[float] = Field(
         default=None,
         description="hemoglobin (Hb) level in g/dL"
