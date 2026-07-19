@@ -121,7 +121,6 @@ async def upload_file(file: UploadFile = File(...), current_user=Depends(get_cur
                                    alt_sgpt=response.alt_sgpt,
                                    tsh=response.tsh,
                                    vitamin_d=response.vitamin_d)
-  
 
         report_dict = new_report.model_dump()
         summary = generate_summary(report_dict)
@@ -131,11 +130,11 @@ async def upload_file(file: UploadFile = File(...), current_user=Depends(get_cur
 
         new_report.extracted_text = report_text
         new_report.summary_text = summary
-    
+
         db.add(new_report)
         await db.commit()
         await db.refresh(new_report)
-        
+
         documents = create_chunks(report_text)
         chunks_ids = []
 
@@ -148,7 +147,7 @@ async def upload_file(file: UploadFile = File(...), current_user=Depends(get_cur
         vector_db = create_or_get_vector_db()
         vector_db.add_documents(documents, ids=chunks_ids)
 
-        return {"message": "summary & embeddings generated successfully !", 
+        return {"message": "summary & embeddings generated successfully !",
                 "file_id": new_doc.id, "summary": summary}
 
     except:
@@ -206,7 +205,7 @@ async def delete_chat(id: int, db: AsyncSession = Depends(create_db_connection))
 
 # deletes user account & its history
 @app.delete("/delete")
-async def delete_chat(current_user=Depends(get_current_user), db: AsyncSession = Depends(create_db_connection)):
+async def delete_profile(current_user=Depends(get_current_user), db: AsyncSession = Depends(create_db_connection)):
     user_id = current_user.id
     try:
         user = db.query(User).filter(User.id == user_id).first()
@@ -220,7 +219,7 @@ async def delete_chat(current_user=Depends(get_current_user), db: AsyncSession =
 
 # updates user account details
 @app.put("/update-profile")
-async def delete_profile(user: UserSchema, current_user=Depends(get_current_user), db: AsyncSession = Depends(create_db_connection)):
+async def update_profile(user: UserSchema, current_user=Depends(get_current_user), db: AsyncSession = Depends(create_db_connection)):
     user_id = current_user.id
     try:
         is_user = db.query(User).filter(User.id == user_id).first()
@@ -236,3 +235,15 @@ async def delete_profile(user: UserSchema, current_user=Depends(get_current_user
     except:
         raise HTTPException(
             status_code=404, detail="failed to delete chat history !")
+
+
+# sends reset password mail
+@app.post("/reset-password")
+async def reset_password():
+    print("this is a reset password function")
+
+
+# update password
+@app.post("/update-password")
+async def update_password():
+    print("this is a function password function")
