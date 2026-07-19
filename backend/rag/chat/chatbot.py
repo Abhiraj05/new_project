@@ -3,7 +3,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough, RunnableParallel
 from langchain_core.output_parsers import StrOutputParser
 from schemas.chatbotSchema import ChatResponse
-from backend.rag.vector.vector_store import create_or_get_vector_db
+from rag.vector.vector_store import create_or_get_vector_db
 
 
 model = ChatGoogleGenerativeAI(model="gemini-3-flash-preview")
@@ -16,12 +16,12 @@ def join_text(retrieved_docs):
 
 
 # answers the user query based on context
-def answer_user_query(user_id, file_id, user_message):
+def answer_user_query(user_id, file_id, user_message, chat_history):
     vector_db = create_or_get_vector_db()
     parser = StrOutputParser()
     retriever = vector_db.as_retriever(
         search_type="similarity",
-        search_kwargs={"k": 4},
+        search_kwargs={"k": 5},
         filter={
             'user_id': user_id,
             'file_id': file_id
@@ -35,18 +35,24 @@ def answer_user_query(user_id, file_id, user_message):
       {context}
       
       question:{question}
+      
+      previous_chat_history:{chat_history}
       """,
-        input_variables=["context", "question"]
+        input_variables=["context", "question", "chat_history"]
     )
 
     parallel_chain = RunnableParallel({
         "context": retriever | RunnableLambda(join_text),
-        "question": RunnablePassthrough()
+        "question": RunnablePassthrough(),
+        "chat_history":RunnableLambda(lambda x:x["chat_history"])
     })
 
     final_chain = parallel_chain | prompt | structured_model | parser
 
-    response = final_chain.invoke(user_message)
+    response = final_chain.invoke({
+         "question":user_message,
+         "chat_history":chat_history
+    })
 
     if not response:
         return None

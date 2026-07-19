@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-
+# messages schema
 class Messages(BaseModel):
     user_id: int = Field(description="user id")
     user_msg: str = Field(description="user message")

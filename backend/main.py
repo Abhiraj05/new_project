@@ -1,8 +1,8 @@
-from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, WebSocket
+from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
 from schemas.user_schema import User
-from schemas.document_schema import Document
+from schemas.file_schema import UploadedFile
 from schemas.messages_schema import Messages
 from db.db_connection import create_db_connection
 from auth.hash_password import hash_password, verify_password
@@ -12,6 +12,8 @@ from rag.chunks.generate_chunks import create_chunks
 from rag.vector.vector_store import create_or_get_vector_db
 from rag.chat.chatbot import answer_user_query
 from cache.redis_client import redis_connection
+from langchain_core.messages import AIMessage,HumanMessage,SystemMessage
+from datetime import date
 
 # app initialise
 app = FastAPI()
@@ -33,7 +35,7 @@ app.add_middleware(
 
 # checks whether new or older user & then register's user
 @app.post("/signup")
-def create_user(user: User, db: Session = Depends(create_db_connection)):
+async def create_user(user: User, db: AsyncSession = Depends(create_db_connection)):
 
     user_data = User(**user.model_dump())
     old_user = db.query(User).filter(User.email == user_data.email).first()
@@ -42,15 +44,15 @@ def create_user(user: User, db: Session = Depends(create_db_connection)):
         new_user = User(email=user_data.email,
                         password=hash_password(user_data.password))
         db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
+        await db.commit()
+        await db.refresh(new_user)
     else:
         return HTTPException(status_code=400, detail="user already exist !")
 
 
 # checks credentials & login's user
 @app.post("/signin")
-def login(user: User, db: Session = Depends(create_db_connection)):
+def login(user: User, db: AsyncSession = Depends(create_db_connection)):
     user_data = User(**user.model_dump())
     is_user = db.query(User).filter(User.email == user_data.email).first()
 
@@ -63,20 +65,27 @@ def login(user: User, db: Session = Depends(create_db_connection)):
 
 
 # process the doument & create embeddings and store it in a vector db
-@app.post("/process-document")
-def process_document(file: Document, current_user=Depends(get_current_user), db: Session = Depends(create_db_connection)):
-    file_name = file.document
+@app.post("/upload-file")
+async def upload_file(file: UploadFile = File(...), current_user=Depends(get_current_user), db: AsyncSession = Depends(create_db_connection)):
+    file_name = file.filename
+    path = f"upload/{file_name}"
+
     if not file_name:
         raise HTTPException(status_code=400, detail="file not found !")
-    is_old_doc = db.query(Document).filter(Document.user_id == current_user.id,
-                                           Document.document == file_name).first()
+    is_old_doc = db.query(UploadedFile).filter(UploadedFile.user_id == current_user.id,
+                                               UploadedFile.file_name == file_name).first()
     if is_old_doc is not None:
-        new_doc = Document(user_id=current_user.id, document=file_name)
+        with open(path, "wb") as buffer:
+            buffer.write(await file.read())
+
+        new_doc = UploadedFile(user_id=current_user.id, file_name=file_name,
+                               file_path=path, upload_date=date.today())
         db.add(new_doc)
-        db.commit()
-        db.refresh()
+        await db.commit()
+        await db.refresh()
     else:
         return {"message": "embeddings already exist !"}
+
     text = extract_text(file_name)
     documents = create_chunks(text)
     chunks_ids = []
@@ -94,20 +103,34 @@ def process_document(file: Document, current_user=Depends(get_current_user), db:
 
 
 # processes user query & gives answer
-@app.post("/answer-query")
-def process_user_query(message: Messages, current_user=Depends(get_current_user), db: Session = Depends(create_db_connection)):
+@app.websocket("/chat")
+async def chat(websocket: WebSocket, current_user=Depends(get_current_user), db: AsyncSession = Depends(create_db_connection)):
     user_id = current_user.id
-    file_id = None
-    user_message = message.user_msg
+    chat_history=[SystemMessage(content="You are a helpful assistant.")]
+    
+    await websocket.accept()
+    try:
+        while True:
+            user_data = await websocket.receive_text()
+            if not file_id:
+                file_id = user_data["file_id"]
 
-    response = answer_user_query(user_id, file_id, user_message)
+            user_message = user_data["message"]
+            chat_history.append(HumanMessage(content=user_message))
+            bot_response = answer_user_query(user_id, file_id, user_message,chat_history)
 
-    if response is None:
-        return {"message": "no response bot failed to answer question !"}
-    else:
-        new_message = Messages(user_id=current_user.id,
-                               user_msg=user_message, bot_msg=response.bot)
-        db.add(new_message)
-        db.commit()
-        db.refresh(new_message)
-        return {"message": "question answered successfully !"}
+            if bot_response is None:
+                await websocket.send_text("sorry server is busy !")
+
+            else:
+                chat_history.append(AIMessage(content=bot_response))
+                await websocket.send_text(bot_response)
+
+                new_message = Messages(user_id=user_id,
+                                       user_msg=user_message, bot_msg=bot_response)
+                db.add(new_message)
+                await db.commit()
+                await db.refresh(new_message)
+
+    except WebSocketDisconnect:
+        print("user disconnected !")
