@@ -1,4 +1,5 @@
-from sqlalchemy import Column, String, Integer, Float, ForeignKey
+from sqlalchemy import Column, String, Integer, Float, Text, ForeignKey
+from sqlalchemy.orm import Relationship
 from db.db_connection import Base
 
 
@@ -13,6 +14,8 @@ class ReportDetails(Base):
         nullable=False,
         index=True
     )
+    extracted_text = Column(Text, nullable=True)
+    summary_text = Column(Text, nullable=True)
     hemoglobin = Column(Float, nullable=True)
     wbc_count = Column(Float, nullable=True)
     platelet_count = Column(Float, nullable=True)
@@ -28,3 +31,8 @@ class ReportDetails(Base):
     alt_sgpt = Column(Float, nullable=True)
     tsh = Column(Float, nullable=True)
     vitamin_d = Column(Float, nullable=True)
+    
+    uploaded_files=Relationship(
+        "UploadedFile",
+        back_populates="report"
+    )

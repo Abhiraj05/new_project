@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, Date, ForeignKey
+from sqlalchemy.orm import Relationship
 from db.db_connection import Base
 
 
@@ -34,3 +35,21 @@ class UploadedFile(Base):
         Date,
         nullable=False
     )
+
+    user = Relationship(
+        "User",
+        back_populates="uploaded_files"
+    )
+    
+    report = Relationship(
+        "ReportDetails",
+        back_populates="uploaded_files",
+        cascade="all, delete"
+    )
+    
+    chats = Relationship(
+        "Chats",
+        back_populates="uploaded_files",
+        cascade="all, delete"
+    )
+

@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, Text, ForeignKey
+from sqlalchemy.orm import Relationship
 from db.db_connection import Base
 
 
@@ -21,3 +22,13 @@ class Chats(Base):
     )
     user_msg = Column(Text, nullable=False)
     ai_msg = Column(Text, nullable=False)
+    
+    user = Relationship(
+        "User",
+        back_populates="chats"
+    )
+    
+    uploaded_files=Relationship(
+        "UploadedFile",
+        back_populates="chats"
+    )
