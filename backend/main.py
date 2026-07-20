@@ -31,7 +31,7 @@ app = FastAPI()
 redis = redis_connection()
 
 # allowed origins
-origins = [""]
+origins = ["http://localhost:3000/"]
 
 app.add_middleware(
     CORSMiddleware,
