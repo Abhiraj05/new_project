@@ -1,7 +1,11 @@
-from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, WebSocket, WebSocketDisconnect, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession
 from schemas.user_schema import UserSchema
+from schemas.mail_schema import MailSchema
+from schemas.feedback_schema import Feedback
+from schemas.verify_otp import VerifyOtp
+from schemas.set_new_password import SetNewPasswordSchema
 from sql.models.user_model import User
 from sql.models.file_model import UploadedFile
 from sql.models.report_model import ReportDetails
@@ -15,6 +19,9 @@ from rag.vector.vector_store import create_or_get_vector_db
 from rag.chat.chatbot import extract_report_values, generate_summary, answer_user_query
 from cache.redis_client import redis_connection
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
+from services.email_service import send_mail
+from services.otp_generation import generate_otp, otp_key
+from cache.redis_client import redis_connection
 from datetime import date
 
 # app initialise
@@ -38,43 +45,48 @@ app.add_middleware(
 # checks whether new or older user & then register's user
 @app.post("/signup")
 async def create_user(user: UserSchema, db: AsyncSession = Depends(create_db_connection)):
-    user_data = User(**user.model_dump())
-
+    user_email = user.email
+    user_password = user.password
     try:
-        old_user = db.query(User).filter(User.email == user_data.email).first()
+        old_user = db.query(User).filter(
+            User.email == user_email.email).first()
 
         if old_user is None:
-            new_user = User(email=user_data.email,
-                            password=hash_password(user_data.password))
+            new_user = User(email=user_email.email,
+                            password=hash_password(user_password))
             db.add(new_user)
             await db.commit()
             await db.refresh(new_user)
+
+            return {"message": "registered successfully !"}
+
         else:
-            return HTTPException(status_code=400, detail="user already exist !")
+            return HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="user already exist !")
 
     except:
         raise HTTPException(
-            status_code=404, detail="registration failed !")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="registration failed !")
 
 
 # checks credentials & login's user
 @app.post("/signin")
 def login(user: UserSchema, db: AsyncSession = Depends(create_db_connection)):
-    user_data = User(**user.model_dump())
+    user_email = user.email
+    user_password = user.password
 
     try:
-        is_user = db.query(User).filter(User.email == user_data.email).first()
+        is_user = db.query(User).filter(User.email == user_email).first()
 
-        if is_user is None or not verify_password(user_data.password, is_user.password):
+        if is_user is None or not verify_password(user_password, is_user.password):
             return HTTPException(status_code=400, detail="invalid credentials !")
 
         token = create_token({"sub": is_user.email})
 
-        return {"access_token": token}
+        return {"message": "login successfully !", "access_token": token}
 
     except:
         raise HTTPException(
-            status_code=404, detail="login failed !")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="login failed !")
 
 
 # process the doument & create embeddings and store it in a vector db
@@ -104,7 +116,7 @@ async def upload_file(file: UploadFile = File(...), current_user=Depends(get_cur
         response = extract_report_values(report_text)
         if response is None:
             raise HTTPException(
-                status_code=404, detail="failed to extract report values !")
+                status_code=status.HTTP_400_BAD_REQUEST, detail="failed to extract report values !")
 
         new_report = ReportDetails(hemoglobin=response.hemoglobin,
                                    wbc_count=response.wbc_count,
@@ -126,7 +138,7 @@ async def upload_file(file: UploadFile = File(...), current_user=Depends(get_cur
         summary = generate_summary(report_dict)
         if summary is None:
             raise HTTPException(
-                status_code=404, detail="failed to generate summary !")
+                status_code=status.HTTP_400_BAD_REQUEST, detail="failed to generate summary !")
 
         new_report.extracted_text = report_text
         new_report.summary_text = summary
@@ -152,7 +164,7 @@ async def upload_file(file: UploadFile = File(...), current_user=Depends(get_cur
 
     except:
         raise HTTPException(
-            status_code=404, detail="failed to upload report file !")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to upload report file !")
 
 
 # processes user query & gives answer
@@ -187,7 +199,8 @@ async def chat(websocket: WebSocket, current_user=Depends(get_current_user), db:
                 await db.refresh(new_message)
 
     except WebSocketDisconnect:
-        print("user disconnected !")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="user disconnected ! !")
 
 
 # deletes specific chat history
@@ -200,7 +213,7 @@ async def delete_chat(id: int, db: AsyncSession = Depends(create_db_connection))
         return {"message": "file deleted successfully !"}
     except:
         raise HTTPException(
-            status_code=404, detail="failed to delete chat history !")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to delete chat history !")
 
 
 # deletes user account & its history
@@ -214,7 +227,7 @@ async def delete_profile(current_user=Depends(get_current_user), db: AsyncSessio
         return {"message": "profile deleted successfully !"}
     except:
         raise HTTPException(
-            status_code=404, detail="failed to delete chat history !")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to delete chat history !")
 
 
 # updates user account details
@@ -225,7 +238,7 @@ async def update_profile(user: UserSchema, current_user=Depends(get_current_user
         is_user = db.query(User).filter(User.id == user_id).first()
         if not is_user:
             raise HTTPException(
-                status_code=404, detail="profile not found !")
+                status_code=status.HTTP_401_UNAUTHORIZED, detail="profile not found !")
         else:
             is_user.name = user.name
             is_user.email = user.email
@@ -234,16 +247,114 @@ async def update_profile(user: UserSchema, current_user=Depends(get_current_user
             return {"message": "profile deleted successfully !"}
     except:
         raise HTTPException(
-            status_code=404, detail="failed to delete chat history !")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to delete chat history !")
 
 
 # sends reset password mail
 @app.post("/reset-password")
-async def reset_password():
-    print("this is a reset password function")
+async def reset_password(email: MailSchema, db: AsyncSession = Depends(create_db_connection)):
+    recipient_email = email.recipient_email
+    try:
+        is_user = db.query(User).filter(User.email == recipient_email).first()
+        if not is_user:
+            raise HTTPException(
+                status_code=404, detail="profile not found !")
+        else:
+            otp = generate_otp()
+            redis = redis_connection()
+            redis.set(otp_key(recipient_email), otp, ex=60)
+            email_sub = "Reset Your Password"
+            email_body = f"""
+            Hello,
+
+            We received a request to reset your password.
+
+            Use the One-Time Password (OTP) below to reset your password:
+
+            OTP: {otp}
+
+            This OTP is valid for 10 minutes. If you did not request a password reset, you can safely ignore this email.
+            Your account will remain secure.
+
+            Thank you,
+            Tech Team
+            """
+            await send_mail(email_sub, recipient_email, email_body)
+
+            return {"message": "reset password mail sended successfully !"}
+
+    except:
+        raise HTTPException(
+            status_code=404, detail="failed to send reset email !")
+
+
+# verify otp
+@app.post("/verify-otp")
+async def verify_otp(data: VerifyOtp):
+    user_email = data.email
+    user_entered_otp = data.otp
+    try:
+        redis = redis_connection()
+        is_otp = int(redis.get(otp_key(user_email)))
+        if not is_otp:
+            raise HTTPException(
+                status_code=404, detail="otp not found !")
+
+        elif user_entered_otp == is_otp:
+            redis.delete(otp_key(user_email))
+
+        return {"message": "otp verified successfully !"}
+    except:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to verify otp !")
 
 
 # update password
 @app.post("/update-password")
-async def update_password():
-    print("this is a function password function")
+async def update_password(data: SetNewPasswordSchema, db: AsyncSession = Depends(create_db_connection)):
+    user_email = data.email
+    user_new_password = data.password
+    try:
+        is_user = db.query(User).filter(User.email == user_email).first()
+        if not is_user:
+            raise HTTPException(
+                status_code=404, detail="profile not found !")
+        else:
+            is_user.password = hash_password(user_new_password)
+            await db.commit()
+            await db.refresh(is_user)
+            return {"message": "password reseted successfully !"}
+
+    except:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to verify otp !")
+
+
+# sends feedback mail
+@app.post("/feedback")
+async def send_feedback(feedback: Feedback, db: AsyncSession = Depends(create_db_connection)):
+    user_name = feedback.name
+    user_email = feedback.email
+    user_feedback = feedback.feedback
+    try:
+        email_sub = "Feedback for Your Website"
+        email_body = f"""
+            Hello Tech Team,
+
+            I would like to share the following feedback regarding your website.
+
+            Name: {user_email}
+            Feedback:
+            {user_feedback}
+
+            Thank you for taking the time to review my feedback. I appreciate your efforts to improve the website.
+
+            Best regards,
+            {user_name}
+            """
+        await send_mail(email_sub, user_email, email_body)
+        return {"message": "feedback sended successfully !"}
+
+    except:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to send feedback email !")
