@@ -78,7 +78,7 @@ def login(user: UserSchema, db: AsyncSession = Depends(create_db_connection)):
         is_user = db.query(User).filter(User.email == user_email).first()
 
         if is_user is None or not verify_password(user_password, is_user.password):
-            return HTTPException(status_code=400, detail="invalid credentials !")
+            return HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="invalid credentials !")
 
         token = create_token({"sub": is_user.email})
 
@@ -97,7 +97,7 @@ async def upload_file(file: UploadFile = File(...), current_user=Depends(get_cur
 
     try:
         if not file_name:
-            raise HTTPException(status_code=400, detail="file not found !")
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="file not found !")
         is_old_doc = db.query(UploadedFile).filter(UploadedFile.user_id == current_user.id,
                                                    UploadedFile.file_name == file_name).first()
         if is_old_doc is not None:
@@ -258,7 +258,7 @@ async def reset_password(email: MailSchema, db: AsyncSession = Depends(create_db
         is_user = db.query(User).filter(User.email == recipient_email).first()
         if not is_user:
             raise HTTPException(
-                status_code=404, detail="profile not found !")
+                status_code=status.HTTP_400_BAD_REQUEST, detail="profile not found !")
         else:
             otp = generate_otp()
             redis = redis_connection()
@@ -285,7 +285,7 @@ async def reset_password(email: MailSchema, db: AsyncSession = Depends(create_db
 
     except:
         raise HTTPException(
-            status_code=404, detail="failed to send reset email !")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="failed to send reset email !")
 
 
 # verify otp
@@ -298,7 +298,7 @@ async def verify_otp(data: VerifyOtp):
         is_otp = int(redis.get(otp_key(user_email)))
         if not is_otp:
             raise HTTPException(
-                status_code=404, detail="otp not found !")
+                status_code=status.HTTP_400_BAD_REQUEST, detail="otp not found !")
 
         elif user_entered_otp == is_otp:
             redis.delete(otp_key(user_email))
@@ -318,7 +318,7 @@ async def update_password(data: SetNewPasswordSchema, db: AsyncSession = Depends
         is_user = db.query(User).filter(User.email == user_email).first()
         if not is_user:
             raise HTTPException(
-                status_code=404, detail="profile not found !")
+                status_code=status.HTTP_400_BAD_REQUEST, detail="profile not found !")
         else:
             is_user.password = hash_password(user_new_password)
             await db.commit()
