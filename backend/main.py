@@ -31,7 +31,7 @@ app = FastAPI()
 redis = redis_connection()
 
 # allowed origins
-origins = ["http://localhost:3000/"]
+origins = ["http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -47,6 +47,7 @@ app.add_middleware(
 async def create_user(user: UserSchema, db: AsyncSession = Depends(create_db_connection)):
     user_email = user.email
     user_password = user.password
+  
     try:
         old_user = db.query(User).filter(
             User.email == user_email.email).first()
